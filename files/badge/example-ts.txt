@@ -1,0 +1,14 @@
+import {Component} from '@angular/core';
+import {IconComponent} from "../../components/icon/icon.component";
+import {BadgeDirective} from "../../shared/directives/badge.directive";
+
+@Component({
+  selector: 'app-badge-example',
+  imports: [
+    IconComponent,
+    BadgeDirective
+  ],
+  templateUrl: './badge-example.component.html',
+  styleUrl: './badge-example.component.scss'
+})
+export class BadgeExampleComponent {}

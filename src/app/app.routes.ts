@@ -8,4 +8,11 @@ export const routes: Routes = [
         m => m.HomepageComponent
       ),
   },
+  {
+    path: 'icon',
+    loadComponent: () =>
+      import('./pages/icon-example/icon-example.component').then(
+        m => m.IconExampleComponent
+      ),
+  },
 ];

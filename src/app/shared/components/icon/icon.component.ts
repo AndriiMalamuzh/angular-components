@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-icon',
@@ -7,6 +8,8 @@ import { Component, input } from '@angular/core';
   styleUrl: './icon.component.scss',
 })
 export class IconComponent {
+  protected readonly environment = environment;
+
   name = input.required<string>();
   size = input<number>(24);
 }

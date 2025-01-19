@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --no-hmr",
-    "build": "ng build",
+    "build": "ng build --output-hashing=all",
     "deploy": "ng deploy --base-href=/angular-components/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

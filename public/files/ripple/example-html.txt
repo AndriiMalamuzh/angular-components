@@ -1,0 +1,1 @@
+<div class="square" ripple>Click me!</div>

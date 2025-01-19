@@ -5,21 +5,28 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/homepage/homepage.component').then(
-        m => m.HomepageComponent
+        c => c.HomepageComponent
       ),
   },
   {
     path: 'icon',
     loadComponent: () =>
       import('./pages/icon-example/icon-example.component').then(
-        m => m.IconExampleComponent
+        c => c.IconExampleComponent
+      ),
+  },
+  {
+    path: 'ripple',
+    loadComponent: () =>
+      import('./pages/ripple-example/ripple-example.component').then(
+        c => c.RippleExampleComponent
       ),
   },
   {
     path: 'tabs',
     loadComponent: () =>
       import('./pages/tabs-example/tabs-example.component').then(
-        m => m.TabsExampleComponent
+        c => c.TabsExampleComponent
       ),
   },
 ];

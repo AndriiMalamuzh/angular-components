@@ -1,0 +1,34 @@
+<h2>Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="square" ripple>Click me!</div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="ripple.directive.ts">
+      @if (fileContents['codeTs']) {
+        <pre><code [highlightAuto]="fileContents['codeTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="ripple.scss">
+      @if (fileContents['codeScss']) {
+        <pre><code [highlightAuto]="fileContents['codeScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

@@ -11,6 +11,11 @@ export const MENU: MenuInterface[] = [
     img: 'icon.svg',
   },
   {
+    title: 'Ripple',
+    link: '/ripple',
+    img: 'ripple.svg',
+  },
+  {
     title: 'Tabs',
     link: '/tabs',
     img: 'tabs.svg',

@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+}
+
+.wrap {
+  width: calc(100% - var(--sidebar-width));
+}
+
+.content {
+  padding: 30px;
+  width: 100%;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 991px) {
+  .wrap {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .content {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,36 @@
+.sidebar {
+  position: sticky;
+  top: 0;
+  padding: 16px 8px;
+  background: #FFF;
+  width: var(--sidebar-width);
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid #CCC;
+  z-index: 999999;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .sidebar {
+    position: fixed;
+    left: calc(0px - var(--sidebar-width));
+    transition: .3s ease-in-out;
+
+    &.opened {
+      left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .sidebar {
+    width: 100%;
+    left: -100%;
+  }
+}

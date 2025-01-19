@@ -1,0 +1,19 @@
+.sidebar-header {
+  display: none;
+}
+
+@media screen and (max-width: 575px) {
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    &__button {
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none;
+    }
+  }
+}

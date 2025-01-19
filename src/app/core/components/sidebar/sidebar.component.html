@@ -1,0 +1,7 @@
+<div class="sidebar" [ngClass]="{'opened': isOpen()}">
+  <app-sidebar-header />
+  @for (item of menu; track item.title) {
+    <app-sidebar-item [item]="item" />
+  }
+</div>
+<app-sidebar-overlay />

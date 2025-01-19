@@ -1,0 +1,7 @@
+<a
+  [routerLink]="item().link"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="sidebar-item"
+  (click)="onCloseSidebar()"
+>{{ item().title }}</a>

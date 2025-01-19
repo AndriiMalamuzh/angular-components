@@ -1,0 +1,21 @@
+.sidebar-item {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  padding: 15px;
+  text-decoration: none;
+  border-radius: 100px;
+
+  &.active {
+    background: rgba(var(--color-primary-rgb), 0.15);
+    color: var(--color-primary);
+  }
+}
+
+@media (hover: hover) {
+  .sidebar-item {
+    &:hover {
+      background: #EEE;
+    }
+  }
+}

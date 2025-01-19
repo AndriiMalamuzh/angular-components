@@ -1,0 +1,14 @@
+<div class="tab-buttons">
+  @for (tab of tabs; let i = $index; track i;) {
+    <button
+      type="button"
+      class="tab-button"
+      [class]="{'active': selectedIndex === i}"
+      (click)="selectTab(i)"
+      ripple
+    >
+      {{tab.label()}}
+    </button>
+  }
+</div>
+<ng-content></ng-content>

@@ -1,0 +1,5 @@
+<app-tab-group>
+  <app-tab label="First">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto deserunt ducimus ex, inventore ipsam iusto officiis sit tenetur voluptatum! Adipisci atque facere nam natus nostrum repellat! Dolorem, ducimus, quis.</app-tab>
+  <app-tab label="Second">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A commodi, consectetur eligendi enim facilis iste laborum magni natus nisi odio odit optio quae quibusdam quidem quis saepe, sed sint ut!</app-tab>
+  <app-tab label="Third">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore dolores, doloribus ducimus, magni nobis nostrum officia omnis quidem recusandae repellendus rerum soluta sunt? Cumque labore perferendis soluta vel vitae.</app-tab>
+</app-tab-group>

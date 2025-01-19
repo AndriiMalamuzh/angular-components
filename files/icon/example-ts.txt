@@ -1,0 +1,9 @@
+import {Component} from '@angular/core';
+import {IconComponent} from "../../components/icon/icon.component";
+
+@Component({
+  selector: 'app-icon-example',
+  imports: [IconComponent],
+  templateUrl: './icon-example.component.html'
+})
+export class IconExampleComponent {}

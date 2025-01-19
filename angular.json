@@ -33,6 +33,7 @@
             ],
             "styles": [
               "public/css/ripple.scss",
+              "public/css/badge.scss",
               "src/styles.scss"
             ],
             "scripts": []

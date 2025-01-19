@@ -1,0 +1,49 @@
+<h2>Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="icons">
+        <div class="icon" badge="1">
+          <app-icon name="phone"></app-icon>
+        </div>
+        <div class="icon" badge="5">
+          <app-icon name="bell"></app-icon>
+        </div>
+        <div class="icon" badge="10">
+          <app-icon name="mail"></app-icon>
+        </div>
+      </div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="badge.directive.ts">
+      @if (fileContents['codeTs']) {
+        <pre><code [highlightAuto]="fileContents['codeTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="badge.scss">
+      @if (fileContents['codeScss']) {
+        <pre><code [highlightAuto]="fileContents['codeScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

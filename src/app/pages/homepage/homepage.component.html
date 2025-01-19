@@ -2,7 +2,7 @@
   @for (item of components; track item.title) {
     <a [routerLink]="item.link" class="component">
       @if (item?.img) {
-        <img class="component__img" [src]="environment.publicUrl + 'img/' + item.img" alt="icon"/>
+        <img class="component__img" [src]="environment.publicUrl + 'img/' + item.img" [alt]="item.title"/>
       } @else {
         <div class="component__img"></div>
       }

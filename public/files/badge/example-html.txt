@@ -1,0 +1,11 @@
+<div class="icons">
+  <div class="icon" badge="1">
+    <app-icon name="phone"></app-icon>
+  </div>
+  <div class="icon" badge="5">
+    <app-icon name="bell"></app-icon>
+  </div>
+  <div class="icon" badge="10">
+    <app-icon name="mail"></app-icon>
+  </div>
+</div>

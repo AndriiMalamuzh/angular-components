@@ -1,0 +1,18 @@
+<div
+  class="slide-toggle"
+  [class]="{
+    'slide-toggle--checked': checked(),
+    'slide-toggle--label-before': labelPosition() === 'before',
+    'slide-toggle--disabled': disabled()
+  }"
+  (click)="toggle()"
+>
+  <div
+    class="slide-toggle__switch"
+    [attr.tabindex]="disabled() ? -1 : 0"
+    role="switch"
+    [attr.aria-checked]="checked()"
+    (keydown)="onTogglePressEnter($event)"
+  ></div>
+  <span class="slide-toggle__label"><ng-content></ng-content></span>
+</div>

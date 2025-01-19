@@ -1,0 +1,11 @@
+<form [formGroup]="formGroup">
+  <div class="slide-toggle-item">
+    <app-slide-toggle [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}" (toggleChange)="onChange($event)">Slide me!</app-slide-toggle>
+  </div>
+  <div class="slide-toggle-item">
+    <app-slide-toggle labelPosition="before" formControlName="toggle" (toggleChange)="onChange($event)">Slide me!</app-slide-toggle>
+  </div>
+  <div class="slide-toggle-item">
+    <app-slide-toggle [disabled]="true">Disabled</app-slide-toggle>
+  </div>
+</form>

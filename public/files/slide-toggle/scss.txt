@@ -1,0 +1,60 @@
+:host {
+  display: inline-block;
+}
+
+.slide-toggle {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: bottom;
+  gap: 10px;
+  cursor: pointer;
+
+  &--label-before {
+    flex-direction: row-reverse;
+  }
+
+  &--disabled {
+    cursor: auto;
+  }
+
+  &__switch {
+    width: 50px;
+    height: 26px;
+    background-color: #BBBBBB;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s;
+
+    &::before {
+      content: '';
+      width: 22px;
+      height: 22px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s;
+    }
+  }
+
+  &--disabled {
+    .slide-toggle__switch {
+      background: #DDDDDD;
+    }
+  }
+
+  &--checked {
+    .slide-toggle__switch {
+      background-color: var(--color-primary);
+
+      &::before {
+        transform: translateX(24px);
+      }
+    }
+  }
+
+  &__label {
+    user-select: none;
+  }
+}

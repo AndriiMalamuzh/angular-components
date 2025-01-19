@@ -21,6 +21,11 @@ export const MENU: MenuInterface[] = [
     img: 'ripple.svg',
   },
   {
+    title: 'Slide Toggle',
+    link: '/slide-toggle',
+    img: 'slide-toggle.svg',
+  },
+  {
     title: 'Tabs',
     link: '/tabs',
     img: 'tabs.svg',

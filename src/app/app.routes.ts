@@ -30,6 +30,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'slide-toggle',
+    loadComponent: () =>
+      import(
+        './pages/slide-toggle-example/slide-toggle-example.component'
+      ).then(c => c.SlideToggleExampleComponent),
+  },
+  {
     path: 'tabs',
     loadComponent: () =>
       import('./pages/tabs-example/tabs-example.component').then(

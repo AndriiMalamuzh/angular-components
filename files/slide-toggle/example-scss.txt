@@ -1,0 +1,5 @@
+.slide-toggle-item {
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}

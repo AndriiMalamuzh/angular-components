@@ -1,0 +1,30 @@
+import {Component, inject} from '@angular/core';
+import {ExampleComponent} from "../../shared/components/example/example.component";
+import {SlideToggleComponent} from "../../components/slide-toggle/slide-toggle.component";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+@Component({
+  selector: 'app-slide-toggle-example',
+  standalone: true,
+  imports: [
+    SlideToggleComponent,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  templateUrl: './slide-toggle-example.component.html',
+  styleUrl: './slide-toggle-example.component.scss'
+})
+export class SlideToggleExampleComponent {
+
+  isChecked = true;
+
+  _formBuilder = inject(FormBuilder);
+  formGroup = this._formBuilder.group({
+    toggle: ''
+  });
+
+  onChange(event: boolean): void {
+    console.log(event);
+  }
+
+}

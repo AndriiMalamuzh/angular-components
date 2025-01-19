@@ -1,8 +1,8 @@
 import {
   AfterContentInit,
   Component,
-  ContentChildren,
-  QueryList,
+  contentChildren,
+  signal,
 } from '@angular/core';
 import { TabComponent } from './tab/tab.component';
 import { RippleDirective } from 'src/app/shared/directives/ripple.directive';
@@ -14,18 +14,17 @@ import { RippleDirective } from 'src/app/shared/directives/ripple.directive';
   styleUrl: './tab-group.component.scss',
 })
 export class TabGroupComponent implements AfterContentInit {
-  @ContentChildren(TabComponent) tabs!: QueryList<TabComponent>;
-  selectedIndex = 0;
+  tabs = contentChildren(TabComponent);
+  selectedIndex = signal<number>(0);
 
   ngAfterContentInit(): void {
-    const activeTabs = this.tabs.toArray();
-    if (activeTabs.length) {
+    if (this.tabs()?.length) {
       this.selectTab(0);
     }
   }
 
   selectTab(index: number): void {
-    this.selectedIndex = index;
-    this.tabs.toArray().forEach((tab, i) => (tab.active = i === index));
+    this.selectedIndex.set(index);
+    this.tabs().forEach((tab, i) => tab.active.set(i === index));
   }
 }

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-tab',
@@ -8,6 +8,5 @@ import { Component, input } from '@angular/core';
 })
 export class TabComponent {
   label = input.required<string>();
-
-  active = false;
+  active = signal<boolean>(false);
 }

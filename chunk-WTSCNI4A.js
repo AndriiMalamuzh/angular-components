@@ -1,0 +1,1 @@
+import{Ia as t,ua as n}from"./chunk-3MAJPAIN.js";var p=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=n({type:o,selectors:[["app-homepage"]],decls:1,vars:0,consts:[[1,"components"]],template:function(e,m){e&1&&t(0,"div",0)},encapsulation:2})};export{p as HomepageComponent};

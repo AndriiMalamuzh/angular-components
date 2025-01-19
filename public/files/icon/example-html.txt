@@ -1,0 +1,8 @@
+<div class="icons">
+  <app-icon name="expand-more" [size]="50"></app-icon>
+  <app-icon name="logout" [size]="50"></app-icon>
+  <app-icon name="settings" [size]="50"></app-icon>
+  <app-icon name="account-circle" [size]="50"></app-icon>
+  <app-icon name="feed" [size]="50"></app-icon>
+  <app-icon name="chat" [size]="50"></app-icon>
+</div>

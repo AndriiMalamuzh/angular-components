@@ -1,8 +1,56 @@
-<div class="icons">
-  <app-icon name="expand-more" [size]="50"></app-icon>
-  <app-icon name="logout" [size]="50"></app-icon>
-  <app-icon name="settings" [size]="50"></app-icon>
-  <app-icon name="account-circle" [size]="50"></app-icon>
-  <app-icon name="feed" [size]="50"></app-icon>
-  <app-icon name="chat" [size]="50"></app-icon>
-</div>
+<h2>Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="icons">
+        <app-icon name="expand-more" [size]="50"></app-icon>
+        <app-icon name="logout" [size]="50"></app-icon>
+        <app-icon name="settings" [size]="50"></app-icon>
+        <app-icon name="account-circle" [size]="50"></app-icon>
+        <app-icon name="feed" [size]="50"></app-icon>
+        <app-icon name="chat" [size]="50"></app-icon>
+      </div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="icon.component.html">
+      @if (fileContents['codeHtml']) {
+        <pre><code [highlightAuto]="fileContents['codeHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="icon.component.ts">
+      @if (fileContents['codeTs']) {
+        <pre><code [highlightAuto]="fileContents['codeTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="icon.component.scss">
+      @if (fileContents['codeScss']) {
+        <pre><code [highlightAuto]="fileContents['codeScss']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="icons.svg">
+      @if (fileContents['codeSvg']) {
+        <pre><code [highlightAuto]="fileContents['codeSvg']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

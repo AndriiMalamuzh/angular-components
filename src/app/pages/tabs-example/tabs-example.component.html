@@ -1,0 +1,73 @@
+<h2>Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <app-tab-group>
+        <app-tab label="First">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto deserunt ducimus
+          ex, inventore ipsam iusto officiis sit tenetur voluptatum! Adipisci atque facere nam natus nostrum repellat!
+          Dolorem, ducimus, quis.
+        </app-tab>
+        <app-tab label="Second">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A commodi, consectetur
+          eligendi enim facilis iste laborum magni natus nisi odio odit optio quae quibusdam quidem quis saepe, sed sint
+          ut!
+        </app-tab>
+        <app-tab label="Third">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore dolores,
+          doloribus ducimus, magni nobis nostrum officia omnis quidem recusandae repellendus rerum soluta sunt? Cumque
+          labore perferendis soluta vel vitae.
+        </app-tab>
+      </app-tab-group>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Tab Group Component</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="tab-group.component.html">
+      @if (fileContents['tabGroupHtml']) {
+        <pre><code [highlightAuto]="fileContents['tabGroupHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="tab-group.component.ts">
+      @if (fileContents['tabGroupTs']) {
+        <pre><code [highlightAuto]="fileContents['tabGroupTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="tab-group.component.scss">
+      @if (fileContents['tabGroupScss']) {
+        <pre><code [highlightAuto]="fileContents['tabGroupScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Tab Component</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="tab.component.html">
+      @if (fileContents['tabHtml']) {
+        <pre><code [highlightAuto]="fileContents['tabHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="tab.component.ts">
+      @if (fileContents['tabTs']) {
+        <pre><code [highlightAuto]="fileContents['tabTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="tab.component.scss">
+      @if (fileContents['tabScss']) {
+        <pre><code [highlightAuto]="fileContents['tabScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

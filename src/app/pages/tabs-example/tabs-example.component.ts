@@ -1,46 +1,41 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IconComponent } from 'src/app/shared/components/icon/icon.component';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { ExampleComponent } from 'src/app/shared/components/example/example.component';
 import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group.component';
 import { TabComponent } from 'src/app/shared/components/tab-group/tab/tab.component';
 import { HighlightAuto } from 'ngx-highlightjs';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-icon-example',
-  imports: [
-    IconComponent,
-    ExampleComponent,
-    TabGroupComponent,
-    TabComponent,
-    HighlightAuto,
-  ],
-  templateUrl: './icon-example.component.html',
-  styleUrl: './icon-example.component.scss',
+  selector: 'app-tabs-example',
+  imports: [ExampleComponent, TabGroupComponent, TabComponent, HighlightAuto],
+  templateUrl: './tabs-example.component.html',
+  styleUrl: './tabs-example.component.scss',
 })
-export class IconExampleComponent implements OnInit {
+export class TabsExampleComponent implements OnInit {
   fileContents: Record<string, string> = {
     exampleHtml: '',
     exampleTs: '',
-    exampleScss: '',
-    codeHtml: '',
-    codeTs: '',
-    codeScss: '',
-    codeSvg: '',
+    tabGroupHtml: '',
+    tabGroupTs: '',
+    tabGroupScss: '',
+    tabHtml: '',
+    tabTs: '',
+    tabScss: '',
   };
 
   private http = inject(HttpClient);
 
   ngOnInit(): void {
     const fileMappings = {
-      '/icon/example-html.txt': 'exampleHtml',
-      '/icon/example-ts.txt': 'exampleTs',
-      '/icon/example-scss.txt': 'exampleScss',
-      '/icon/html.txt': 'codeHtml',
-      '/icon/ts.txt': 'codeTs',
-      '/icon/scss.txt': 'codeScss',
-      '/icon/svg.txt': 'codeSvg',
+      '/tabs/example-html.txt': 'exampleHtml',
+      '/tabs/example-ts.txt': 'exampleTs',
+      '/tabs/tab-group-html.txt': 'tabGroupHtml',
+      '/tabs/tab-group-ts.txt': 'tabGroupTs',
+      '/tabs/tab-group-scss.txt': 'tabGroupScss',
+      '/tabs/tab-html.txt': 'tabHtml',
+      '/tabs/tab-ts.txt': 'tabTs',
+      '/tabs/tab-scss.txt': 'tabScss',
     };
 
     for (const [url, key] of Object.entries(fileMappings)) {

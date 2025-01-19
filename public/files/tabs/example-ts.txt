@@ -1,0 +1,14 @@
+import {Component} from '@angular/core';
+import {TabGroupComponent} from "../../components/tab-group/tab-group.component";
+import {TabComponent} from "../../components/tab-group/tab/tab.component";
+
+Component({
+  selector: 'app-tabs-example',
+  imports: [
+    TabGroupComponent,
+    TabComponent
+  ],
+  templateUrl: './tabs-example.component.html',
+  styleUrl: './tabs-example.component.scss'
+})
+export class TabsExampleComponent {}

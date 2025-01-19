@@ -10,4 +10,9 @@ export const MENU: MenuInterface[] = [
     link: '/icon',
     img: 'icon.svg',
   },
+  {
+    title: 'Tabs',
+    link: '/tabs',
+    img: 'tabs.svg',
+  },
 ];

@@ -15,4 +15,11 @@ export const routes: Routes = [
         m => m.IconExampleComponent
       ),
   },
+  {
+    path: 'tabs',
+    loadComponent: () =>
+      import('./pages/tabs-example/tabs-example.component').then(
+        m => m.TabsExampleComponent
+      ),
+  },
 ];

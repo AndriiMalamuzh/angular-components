@@ -32,6 +32,7 @@
               }
             ],
             "styles": [
+              "public/css/ripple.scss",
               "src/styles.scss"
             ],
             "scripts": []

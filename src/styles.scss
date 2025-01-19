@@ -1,3 +1,5 @@
+@import 'highlight.js/styles/intellij-light.min.css';
+
 :root {
   --color-primary: #1A7FDC;
   --color-primary-rgb: 26, 127, 220;
@@ -29,10 +31,14 @@ body {
 }
 
 pre {
-  overflow: auto;
+  margin: 0;
 
   code {
     padding: 0 !important;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 

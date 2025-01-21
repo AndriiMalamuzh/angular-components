@@ -1,0 +1,23 @@
+import {Component, inject} from '@angular/core';
+import {RadioComponent} from "../../components/radio/radio.component";
+import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+
+@Component({
+  selector: 'app-radio-example',
+  standalone: true,
+  imports: [
+    RadioComponent,
+    ReactiveFormsModule
+  ],
+  templateUrl: './radio-example.component.html',
+  styleUrl: './radio-example.component.scss'
+})
+export class RadioExampleComponent {
+
+  private fb = inject(FormBuilder);
+
+  form: FormGroup = this.fb.group({
+    language: ['ukrainian'],
+  });
+
+}

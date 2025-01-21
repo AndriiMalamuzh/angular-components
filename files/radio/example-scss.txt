@@ -1,0 +1,13 @@
+.radio-example {
+  h4 {
+    margin: 0 0 10px 0;
+  }
+
+  app-radio {
+    display: block;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

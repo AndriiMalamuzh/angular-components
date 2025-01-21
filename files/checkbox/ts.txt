@@ -4,10 +4,7 @@ import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-checkbox',
-  standalone: true,
-  imports: [
-    NgClass
-  ],
+  imports: [NgClass],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [

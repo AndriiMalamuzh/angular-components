@@ -26,7 +26,7 @@ export class RadioExampleComponent implements OnInit {
   private http = inject(HttpClient);
 
   form: FormGroup = this.fb.group({
-    language: ['ukrainian'],
+    language: ['Ukrainian'],
   });
 
   fileContents: Record<string, string> = {

@@ -1,0 +1,99 @@
+<h2>Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="example-first">
+        <app-checkbox
+          class="example-margin"
+          [checked]="allComplete"
+          [indeterminate]="someComplete()"
+          (checkboxChange)="setAll($event)"
+        >
+          {{task.name}}
+        </app-checkbox>
+        <ul class="example-first__list">
+          @for (subtask of task.subtasks; track subtask) {
+            <li>
+              <app-checkbox [(ngModel)]="subtask.completed" (checkboxChange)="updateAllComplete()">
+                {{subtask.name}}
+              </app-checkbox>
+            </li>
+          }
+        </ul>
+      </div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml1']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml1']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs1']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs1']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss1']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss1']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <form [formGroup]="form">
+        <div formArrayName="checkboxes">
+          @for(checkbox of checkboxes.controls; let i = $index; track i) {
+            <div>
+              <app-checkbox [formControlName]="i" (checkboxChange)="onChange()">
+                {{ checkboxesArray[i].name }}
+              </app-checkbox>
+            </div>
+          }
+        </div>
+        @if (result()) {
+          <div class="result">{{ result() }}</div>
+        }
+      </form>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml2']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml2']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs2']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs2']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss2']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss2']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="checkbox.component.html">
+      @if (fileContents['codeHtml']) {
+        <pre><code [highlightAuto]="fileContents['codeHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="checkbox.component.ts">
+      @if (fileContents['codeTs']) {
+        <pre><code [highlightAuto]="fileContents['codeTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="checkbox.component.scss">
+      @if (fileContents['codeScss']) {
+        <pre><code [highlightAuto]="fileContents['codeScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

@@ -1,0 +1,14 @@
+.example-first {
+  &__list {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      margin-top: 5px;
+    }
+  }
+}
+
+.result {
+  margin-top: 10px;
+}

@@ -1,0 +1,56 @@
+import {Component} from '@angular/core';
+import {ExampleComponent} from "../../shared/components/example/example.component";
+import {CheckboxComponent} from "../../components/checkbox/checkbox.component";
+import {FormsModule} from "@angular/forms";
+
+export interface Task {
+  name: string;
+  completed: boolean;
+  subtasks?: Task[];
+}
+
+@Component({
+  selector: 'app-checkbox-example',
+  standalone: true,
+  imports: [
+    ExampleComponent,
+    CheckboxComponent,
+    FormsModule,
+  ],
+  templateUrl: './checkbox-example.component.html',
+  styleUrl: './checkbox-example.component.scss'
+})
+export class CheckboxExampleComponent {
+
+  task: Task = {
+    name: 'Indeterminate',
+    completed: false,
+    subtasks: [
+      {name: 'First', completed: false},
+      {name: 'Second', completed: true},
+      {name: 'Third', completed: false},
+    ],
+  };
+
+  allComplete: boolean = false;
+
+  updateAllComplete() {
+    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+  }
+
+  someComplete(): boolean {
+    if (this.task.subtasks == null) {
+      return false;
+    }
+    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+  }
+
+  setAll(completed: boolean) {
+    this.allComplete = completed;
+    if (this.task.subtasks == null) {
+      return;
+    }
+    this.task.subtasks.forEach(t => (t.completed = completed));
+  }
+
+}

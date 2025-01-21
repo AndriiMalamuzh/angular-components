@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+  <div formArrayName="checkboxes">
+    @for(checkbox of checkboxes.controls; let i = $index; track i) {
+      <div>
+        <app-checkbox [formControlName]="i" (checkboxChange)="onChange()">
+          {{ checkboxesArray[i].name }}
+        </app-checkbox>
+      </div>
+    }
+  </div>
+  @if (result()) {
+    <div class="result">{{ result() }}</div>
+  }
+</form>

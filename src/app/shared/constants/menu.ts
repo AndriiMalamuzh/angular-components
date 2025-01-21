@@ -11,6 +11,11 @@ export const MENU: MenuInterface[] = [
     img: 'badge.svg',
   },
   {
+    title: 'Checkbox',
+    link: '/checkbox',
+    img: 'checkbox.svg',
+  },
+  {
     title: 'Icon',
     link: '/icon',
     img: 'icon.svg',

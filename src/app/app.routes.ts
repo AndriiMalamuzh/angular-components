@@ -16,6 +16,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'checkbox',
+    loadComponent: () =>
+      import('./pages/checkbox-example/checkbox-example.component').then(
+        c => c.CheckboxExampleComponent
+      ),
+  },
+  {
     path: 'icon',
     loadComponent: () =>
       import('./pages/icon-example/icon-example.component').then(

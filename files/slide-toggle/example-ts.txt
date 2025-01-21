@@ -5,7 +5,6 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-slide-toggle-example',
-  standalone: true,
   imports: [
     SlideToggleComponent,
     FormsModule,
@@ -15,11 +14,11 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
   styleUrl: './slide-toggle-example.component.scss'
 })
 export class SlideToggleExampleComponent {
+  private formBuilder = inject(FormBuilder);
 
-  isChecked = true;
+  isChecked = model<boolean>(true);
 
-  _formBuilder = inject(FormBuilder);
-  formGroup = this._formBuilder.group({
+  formGroup = this.formBuilder.group({
     toggle: ''
   });
 

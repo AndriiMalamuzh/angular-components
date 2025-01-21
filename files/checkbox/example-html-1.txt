@@ -1,0 +1,19 @@
+<div class="example-first">
+  <app-checkbox
+    class="example-margin"
+    [checked]="allComplete"
+    [indeterminate]="someComplete()"
+    (checkboxChange)="setAll($event)"
+  >
+    {{task.name}}
+  </app-checkbox>
+  <ul class="example-first__list">
+    @for (subtask of task.subtasks; track subtask) {
+      <li>
+        <app-checkbox [(ngModel)]="subtask.completed" (checkboxChange)="updateAllComplete()">
+          {{subtask.name}}
+        </app-checkbox>
+      </li>
+    }
+  </ul>
+</div>

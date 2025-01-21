@@ -1,0 +1,41 @@
+import {Component, inject, signal} from '@angular/core';
+import {CheckboxComponent} from "../../components/checkbox/checkbox.component";
+import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+@Component({
+  selector: 'app-checkbox-example',
+  standalone: true,
+  imports: [
+    CheckboxComponent,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  templateUrl: './checkbox-example.component.html',
+  styleUrl: './checkbox-example.component.scss'
+})
+export class CheckboxExampleComponent {
+
+  private fb = inject(FormBuilder)
+
+  checkboxesArray = [
+    { id: 1, name: 'Option 1' },
+    { id: 2, name: 'Option 2' },
+    { id: 3, name: 'Option 3' }
+  ];
+  form: FormGroup = this.fb.group({
+      checkboxes: this.fb.array(this.checkboxesArray.map(() => new FormControl(false)))
+    });
+  result = signal<string>('');
+
+  get checkboxes() {
+    return this.form.get('checkboxes') as FormArray;
+  }
+
+  onChange(): void {
+    const selectedOptions = this.form.value.checkboxes
+      .map((checked: boolean, index: number) => checked ? this.checkboxesArray[index].name : null)
+      .filter((value: string) => value !== null);
+    this.result.set(selectedOptions);
+  }
+
+}

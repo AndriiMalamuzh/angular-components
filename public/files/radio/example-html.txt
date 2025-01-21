@@ -1,0 +1,9 @@
+<div class="radio-example">
+  <form [formGroup]="form">
+    <h4>Choose you language: </h4>
+    <app-radio formControlName="language" name="language" value="Ukrainian">Ukrainian</app-radio>
+    <app-radio formControlName="language" name="language" value="English">English</app-radio>
+    <app-radio formControlName="language" name="language" value="German">German</app-radio>
+  </form>
+  <p>Selected language: {{ form.get('language')?.value }}</p>
+</div>

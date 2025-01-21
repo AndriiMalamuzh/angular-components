@@ -30,6 +30,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'radio-button',
+    loadComponent: () =>
+      import('./pages/radio-example/radio-example.component').then(
+        c => c.RadioExampleComponent
+      ),
+  },
+  {
     path: 'ripple',
     loadComponent: () =>
       import('./pages/ripple-example/ripple-example.component').then(

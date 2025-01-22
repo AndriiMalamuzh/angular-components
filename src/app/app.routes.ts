@@ -16,6 +16,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'button',
+    loadComponent: () =>
+      import('./pages/button-example/button-example.component').then(
+        c => c.ButtonExampleComponent
+      ),
+  },
+  {
     path: 'checkbox',
     loadComponent: () =>
       import('./pages/checkbox-example/checkbox-example.component').then(

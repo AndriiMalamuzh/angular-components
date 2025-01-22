@@ -1,0 +1,17 @@
+import {Component} from '@angular/core';
+import {RouterLink} from "@angular/router";
+import {ButtonDirective} from "../../shared/directives/button/button.directive";
+import {IconComponent} from "../../components/icon/icon.component";
+
+@Component({
+  selector: 'app-button-example',
+  standalone: true,
+  imports: [
+    RouterLink,
+    ButtonDirective,
+    IconComponent
+  ],
+  templateUrl: './button-example.component.html',
+  styleUrl: './button-example.component.scss'
+})
+export class ButtonExampleComponent {}

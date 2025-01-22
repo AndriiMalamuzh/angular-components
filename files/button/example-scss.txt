@@ -1,0 +1,26 @@
+.buttons-example {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #CCC;
+  }
+
+  &__label {
+    width: 150px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 0 16px;
+  }
+}

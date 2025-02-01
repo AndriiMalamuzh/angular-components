@@ -41,11 +41,11 @@ export const MENU: MenuInterface[] = [
     link: '/icon',
     img: 'icon.svg',
   },
-  // {
-  //   title: 'Input',
-  //   link: '/input',
-  //   img: 'input.svg',
-  // },
+  {
+    title: 'Input',
+    link: '/input',
+    img: 'input.svg',
+  },
   // {
   //   title: 'Mask',
   //   link: '/mask'

@@ -35,6 +35,8 @@ module.exports = tseslint.config(
     ],
     rules: {
       "prettier/prettier": "off",
+      "@angular-eslint/template/interactive-supports-focus": "off",
+      "@angular-eslint/template/click-events-have-key-events": "off"
     },
   }
 );

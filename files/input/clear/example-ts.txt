@@ -1,0 +1,26 @@
+import { Component, model } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { FormFieldSuffixDirective } from 'src/app/shared/components/form-field/directives/form-field-suffix.directive';
+import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
+import { FormsModule } from '@angular/forms';
+import { IconComponent } from 'src/app/shared/components/icon/icon.component';
+import { ButtonDirective } from 'src/app/shared/directives/button.directive';
+
+@Component({
+  selector: 'app-input-example-clear',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    FormFieldSuffixDirective,
+    InputDirective,
+    FormsModule,
+    IconComponent,
+    ButtonDirective,
+  ],
+  templateUrl: './input-example-clear.component.html',
+  styleUrl: './input-example-clear.component.scss',
+})
+export class InputExampleClearComponent {
+  value = model('Clear me!');
+}

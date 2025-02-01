@@ -1,0 +1,18 @@
+<div class="clearable-input">
+  <app-form-field>
+    <app-form-field-label>Clearable input</app-form-field-label>
+    <input type="text" input [(ngModel)]="value" />
+    @if (value()) {
+      <button
+        type="button"
+        button
+        view="flat"
+        [isIcon]="true"
+        form-field-suffix
+        (click)="value.set('')"
+      >
+        <app-icon name="close" [size]="20"></app-icon>
+      </button>
+    }
+  </app-form-field>
+</div>

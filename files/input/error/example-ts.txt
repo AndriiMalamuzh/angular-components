@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field-error/form-field-error.component';
+
+@Component({
+  selector: 'app-input-example-error',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    FormFieldErrorComponent,
+    InputDirective,
+    ReactiveFormsModule,
+  ],
+  templateUrl: './input-example-error.component.html',
+  styleUrl: './input-example-error.component.scss',
+})
+export class InputExampleErrorComponent {
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+}

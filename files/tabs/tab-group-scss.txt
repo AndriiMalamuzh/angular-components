@@ -8,6 +8,7 @@
   height: 48px;
   min-width: 90px;
   padding: 0 15px;
+  font-size: 14px;
   text-align: center;
   background: none;
   border: none;

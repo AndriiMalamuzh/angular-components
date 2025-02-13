@@ -8,9 +8,8 @@ describe('FormFieldErrorExampleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormFieldErrorExampleComponent]
-    })
-    .compileComponents();
+      imports: [FormFieldErrorExampleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormFieldErrorExampleComponent);
     component = fixture.componentInstance;

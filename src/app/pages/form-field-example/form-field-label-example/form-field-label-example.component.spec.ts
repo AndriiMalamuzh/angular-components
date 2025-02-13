@@ -8,9 +8,8 @@ describe('FormFieldLabelExampleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormFieldLabelExampleComponent]
-    })
-    .compileComponents();
+      imports: [FormFieldLabelExampleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormFieldLabelExampleComponent);
     component = fixture.componentInstance;

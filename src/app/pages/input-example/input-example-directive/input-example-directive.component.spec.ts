@@ -8,9 +8,8 @@ describe('InputExampleDirectiveComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InputExampleDirectiveComponent]
-    })
-    .compileComponents();
+      imports: [InputExampleDirectiveComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InputExampleDirectiveComponent);
     component = fixture.componentInstance;

@@ -8,9 +8,8 @@ describe('InputExampleErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InputExampleErrorComponent]
-    })
-    .compileComponents();
+      imports: [InputExampleErrorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InputExampleErrorComponent);
     component = fixture.componentInstance;

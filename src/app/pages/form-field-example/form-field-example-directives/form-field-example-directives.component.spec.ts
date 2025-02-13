@@ -8,9 +8,8 @@ describe('FormFieldExampleDirectivesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormFieldExampleDirectivesComponent]
-    })
-    .compileComponents();
+      imports: [FormFieldExampleDirectivesComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormFieldExampleDirectivesComponent);
     component = fixture.componentInstance;

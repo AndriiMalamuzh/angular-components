@@ -8,9 +8,8 @@ describe('FormFieldHintExampleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormFieldHintExampleComponent]
-    })
-    .compileComponents();
+      imports: [FormFieldHintExampleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormFieldHintExampleComponent);
     component = fixture.componentInstance;

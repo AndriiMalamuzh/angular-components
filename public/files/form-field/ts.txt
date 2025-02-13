@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
 import { NgControl } from '@angular/forms';
-import { FormFieldErrorComponent } from 'src/app/shared/components/form-field/form-field-error/form-field-error.component';
-import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field-error/form-field-error.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
 
 @Component({
   selector: 'app-form-field',

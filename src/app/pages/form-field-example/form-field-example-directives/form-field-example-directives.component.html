@@ -1,0 +1,15 @@
+<h2>Directives</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="form-field-prefix.directive.ts">
+      @if (fileContents['codePrefix']) {
+        <pre><code [highlightAuto]="fileContents['codePrefix']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="form-field-suffix.directive.ts">
+      @if (fileContents['codeSuffix']) {
+        <pre><code [highlightAuto]="fileContents['codeSuffix']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

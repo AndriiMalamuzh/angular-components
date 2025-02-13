@@ -1,0 +1,15 @@
+<h2>Label</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="form-field-label.component.html">
+      @if (fileContents['codeHtml']) {
+        <pre><code [highlightAuto]="fileContents['codeHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="form-field-label.component.ts">
+      @if (fileContents['codeTs']) {
+        <pre><code [highlightAuto]="fileContents['codeTs']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

@@ -5,7 +5,7 @@ import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
 import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
 import { FormsModule } from '@angular/forms';
-import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
 import { IconComponent } from 'src/app/shared/components/icon/icon.component';
 import { ButtonDirective } from 'src/app/shared/directives/button.directive';
 import { FormFieldSuffixDirective } from 'src/app/shared/components/form-field/directives/form-field-suffix.directive';

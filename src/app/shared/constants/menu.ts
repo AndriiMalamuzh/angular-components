@@ -20,6 +20,11 @@ export const MENU: MenuInterface[] = [
     link: '/checkbox',
     img: 'checkbox.svg',
   },
+  {
+    title: 'Form filed',
+    link: '/form-field',
+    img: 'input.svg',
+  },
   // {
   //   title: 'Datepicker',
   //   link: '/datepicker'

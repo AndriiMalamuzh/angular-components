@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ExampleComponent } from 'src/app/shared/components/example/example.component';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
-import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
 import { TabComponent } from 'src/app/shared/components/tab-group/tab/tab.component';
 import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group.component';
-import { FormFieldErrorComponent } from 'src/app/shared/components/form-field-error/form-field-error.component';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field/form-field-error/form-field-error.component';
 import { HighlightAuto } from 'ngx-highlightjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';

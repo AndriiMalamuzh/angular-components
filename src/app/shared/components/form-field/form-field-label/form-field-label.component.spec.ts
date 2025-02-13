@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormFieldLabelComponent } from './form-field-label.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
 
 describe('FormFieldLabelComponent', () => {
   let component: FormFieldLabelComponent;
@@ -8,9 +8,8 @@ describe('FormFieldLabelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormFieldLabelComponent]
-    })
-    .compileComponents();
+      imports: [FormFieldLabelComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormFieldLabelComponent);
     component = fixture.componentInstance;

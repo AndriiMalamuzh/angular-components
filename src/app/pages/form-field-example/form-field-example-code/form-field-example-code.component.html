@@ -1,0 +1,20 @@
+<h2>Form field</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="form-field.component.html">
+      @if (fileContents['codeHtml']) {
+        <pre><code [highlightAuto]="fileContents['codeHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="form-field.component.ts">
+      @if (fileContents['codeTs']) {
+        <pre><code [highlightAuto]="fileContents['codeTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="form-field.component.scss">
+      @if (fileContents['codeScss']) {
+        <pre><code [highlightAuto]="fileContents['codeScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

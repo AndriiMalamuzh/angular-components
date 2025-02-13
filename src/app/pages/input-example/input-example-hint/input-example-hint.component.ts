@@ -3,8 +3,8 @@ import { ExampleComponent } from 'src/app/shared/components/example/example.comp
 import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group.component';
 import { TabComponent } from 'src/app/shared/components/tab-group/tab/tab.component';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
-import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
-import { FormFieldHintComponent } from 'src/app/shared/components/form-field-hint/form-field-hint.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
+import { FormFieldHintComponent } from 'src/app/shared/components/form-field/form-field-hint/form-field-hint.component';
 import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';

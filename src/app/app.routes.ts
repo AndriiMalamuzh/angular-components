@@ -30,6 +30,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'form-field',
+    loadComponent: () =>
+      import('./pages/form-field-example/form-field-example.component').then(
+        c => c.FormFieldExampleComponent
+      ),
+  },
+  {
     path: 'icon',
     loadComponent: () =>
       import('./pages/icon-example/icon-example.component').then(

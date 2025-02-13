@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormFieldErrorComponent } from './form-field-error.component';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field/form-field-error/form-field-error.component';
 
 describe('FormFieldErrorComponent', () => {
   let component: FormFieldErrorComponent;
@@ -8,9 +8,8 @@ describe('FormFieldErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormFieldErrorComponent]
-    })
-    .compileComponents();
+      imports: [FormFieldErrorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormFieldErrorComponent);
     component = fixture.componentInstance;

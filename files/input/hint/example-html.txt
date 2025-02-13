@@ -1,0 +1,7 @@
+<div class="hint-input">
+  <app-form-field>
+    <app-form-field-label>Lorem ipsum</app-form-field-label>
+    <input type="text" input />
+    <app-form-field-hint>This is a hint for the input</app-form-field-hint>
+  </app-form-field>
+</div>

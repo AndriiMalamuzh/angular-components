@@ -1,19 +1,21 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   signal,
 } from '@angular/core';
 import { TabComponent } from './tab/tab.component';
+import { RippleDirective } from 'src/app/shared/directives/ripple.directive';
 
 @Component({
   selector: 'app-tab-group',
-  imports: [],
+  imports: [RippleDirective],
   templateUrl: './tab-group.component.html',
-  styleUrl: './tab-group.component.scss'
+  styleUrl: './tab-group.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabGroupComponent implements AfterContentInit {
-
   tabs = contentChildren(TabComponent);
   selectedIndex = signal<number>(0);
 
@@ -27,5 +29,4 @@ export class TabGroupComponent implements AfterContentInit {
     this.selectedIndex.set(index);
     this.tabs().forEach((tab, i) => tab.active.set(i === index));
   }
-
 }

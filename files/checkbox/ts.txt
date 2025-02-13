@@ -1,10 +1,16 @@
-import {Component, forwardRef, input, model, output} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {NgClass} from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+  model,
+  output,
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [
@@ -14,16 +20,16 @@ import {NgClass} from "@angular/common";
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor {
-
   value = input<string>('');
   checked = model<boolean>(false);
   indeterminate = model<boolean>(false);
   disabled = model<boolean>(false);
   labelPosition = input<'before' | 'after'>('after');
 
-  checkboxChange = output<boolean>()
+  checkboxChange = output<boolean>();
 
   private onChangeFn: (value: boolean) => void = () => {};
   private onTouchedFn: () => void = () => {};

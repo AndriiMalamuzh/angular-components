@@ -22,6 +22,8 @@ import { environment } from 'src/environments/environment';
   styleUrl: './badge-example.component.scss',
 })
 export class BadgeExampleComponent implements OnInit {
+  private http = inject(HttpClient);
+
   fileContents: Record<string, string> = {
     exampleHtml: '',
     exampleTs: '',
@@ -29,8 +31,6 @@ export class BadgeExampleComponent implements OnInit {
     codeTs: '',
     codeScss: '',
   };
-
-  private http = inject(HttpClient);
 
   ngOnInit(): void {
     const fileMappings = {

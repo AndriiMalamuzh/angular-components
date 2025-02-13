@@ -1,23 +1,25 @@
 import {
   Directive,
+  effect,
   ElementRef,
   inject,
   input,
-  OnChanges,
   Renderer2,
 } from '@angular/core';
 
 @Directive({
   selector: '[badge]',
 })
-export class BadgeDirective implements OnChanges {
+export class BadgeDirective {
   badge = input<string | number>();
 
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
 
-  ngOnChanges(): void {
-    this.updateBadge();
+  constructor() {
+    effect(() => {
+      this.updateBadge();
+    });
   }
 
   private updateBadge(): void {

@@ -11,10 +11,10 @@ import {
   selector: '[badge]',
 })
 export class BadgeDirective {
-  badge = input<string | number>();
-
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
+
+  badge = input<string | number>();
 
   constructor() {
     effect(() => {

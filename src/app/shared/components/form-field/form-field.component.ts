@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
@@ -17,6 +18,7 @@ import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/fo
   imports: [],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFieldComponent implements AfterViewInit, OnChanges {
   inputDirective = contentChild(InputDirective);
@@ -31,7 +33,7 @@ export class FormFieldComponent implements AfterViewInit, OnChanges {
   isRequired = signal(false);
   isTextarea = computed(() => {
     return (
-      this.inputDirective()?.elementRef?.nativeElement?.tagName?.toLowerCase() ===
+      this.inputDirective()?.el?.nativeElement?.tagName?.toLowerCase() ===
       'textarea'
     );
   });

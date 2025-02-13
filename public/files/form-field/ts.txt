@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
@@ -9,14 +10,15 @@ import {
 } from '@angular/core';
 import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
 import { NgControl } from '@angular/forms';
-import { FormFieldErrorComponent } from 'src/app/shared/components/form-field-error/form-field-error.component';
-import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field/form-field-error/form-field-error.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
 
 @Component({
   selector: 'app-form-field',
   imports: [],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFieldComponent implements AfterViewInit, OnChanges {
   inputDirective = contentChild(InputDirective);
@@ -31,7 +33,7 @@ export class FormFieldComponent implements AfterViewInit, OnChanges {
   isRequired = signal(false);
   isTextarea = computed(() => {
     return (
-      this.inputDirective()?.elementRef?.nativeElement?.tagName?.toLowerCase() ===
+      this.inputDirective()?.el?.nativeElement?.tagName?.toLowerCase() ===
       'textarea'
     );
   });

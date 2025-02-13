@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   signal,
@@ -12,6 +13,7 @@ import { RippleDirective } from 'src/app/shared/directives/ripple.directive';
   imports: [RippleDirective],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabGroupComponent implements AfterContentInit {
   tabs = contentChildren(TabComponent);

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
   imports: [],
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
   protected readonly environment = environment;

@@ -11,7 +11,7 @@ import {
   selector: '[input]',
 })
 export class InputDirective {
-  public elementRef = inject(ElementRef<HTMLInputElement>);
+  public el = inject(ElementRef<HTMLInputElement>);
 
   focusEvent = output<void>();
   blurEvent = output<void>();
@@ -20,23 +20,23 @@ export class InputDirective {
   @HostBinding('class') className = 'form-field__input';
 
   setId(id: string) {
-    this.elementRef.nativeElement.id = id;
+    this.el.nativeElement.id = id;
   }
 
   getValue(): string {
-    return this.elementRef.nativeElement.value;
+    return this.el.nativeElement.value;
   }
 
   focus() {
-    this.elementRef.nativeElement.focus();
+    this.el.nativeElement.focus();
   }
 
   isDisabled(): boolean {
-    return this.elementRef.nativeElement.disabled;
+    return this.el.nativeElement.disabled;
   }
 
   isRequired(): boolean {
-    return this.elementRef.nativeElement.required;
+    return this.el.nativeElement.required;
   }
 
   onFocus(callback: () => void) {

@@ -1,0 +1,12 @@
+<div class="error-input">
+  <app-form-field>
+    <app-form-field-label>Email</app-form-field-label>
+    <input type="email" [formControl]="emailFormControl" input required>
+    @if (emailFormControl['touched'] && emailFormControl.hasError('required')) {
+      <app-form-field-error>Email is required!</app-form-field-error>
+    }
+    @if (emailFormControl['touched'] && emailFormControl.hasError('email')) {
+      <app-form-field-error>Please enter a valid email address</app-form-field-error>
+    }
+  </app-form-field>
+</div>

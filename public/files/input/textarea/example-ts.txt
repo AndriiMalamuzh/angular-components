@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
+
+@Component({
+  selector: 'app-input-example-textarea',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    InputDirective,
+  ],
+  templateUrl: './input-example-textarea.component.html',
+  styleUrl: './input-example-textarea.component.scss',
+})
+export class InputExampleTextareaComponent {}

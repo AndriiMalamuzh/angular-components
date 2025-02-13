@@ -1,0 +1,34 @@
+<h2>Input with error</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="error-input">
+        <app-form-field>
+          <app-form-field-label>Email</app-form-field-label>
+          <input type="email" [formControl]="emailFormControl" input required>
+          @if (emailFormControl['touched'] && emailFormControl.hasError('required')) {
+            <app-form-field-error>Email is required!</app-form-field-error>
+          }
+          @if (emailFormControl['touched'] && emailFormControl.hasError('email')) {
+            <app-form-field-error>Please enter a valid email address</app-form-field-error>
+          }
+        </app-form-field>
+      </div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

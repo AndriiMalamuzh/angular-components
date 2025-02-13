@@ -1,0 +1,6 @@
+<div class="textarea-input">
+  <app-form-field>
+    <app-form-field-label>Description</app-form-field-label>
+    <textarea name="description" id="description" input></textarea>
+  </app-form-field>
+</div>

@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field-label/form-field-label.component';
+import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
+import { FormFieldHintComponent } from 'src/app/shared/components/form-field-hint/form-field-hint.component';
+
+@Component({
+  selector: 'app-input-example-hint',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    FormFieldHintComponent,
+    InputDirective,
+  ],
+  templateUrl: './input-example-hint.component.html',
+  styleUrl: './input-example-hint.component.scss',
+})
+export class InputExampleHintComponent {}

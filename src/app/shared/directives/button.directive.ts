@@ -8,14 +8,14 @@ import { RippleDirective } from './ripple.directive';
 export class ButtonDirective {
   color = input<'primary' | 'secondary'>();
   view = input.required<'flat' | 'stroked'>();
-  icon = input<boolean>(false);
+  isIcon = input<boolean>(false);
 
   @HostBinding('class') get classes(): string {
     const colorClass = this.color() ? 'button-' + this.color() : '';
     return (
       `button button-${this.view()}` +
       (colorClass ? ' ' + colorClass : '') +
-      (this.icon() ? ' button-icon' : '')
+      (this.isIcon() ? ' button-icon' : '')
     );
   }
 }

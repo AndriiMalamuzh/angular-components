@@ -1,3 +1,17 @@
+::ng-deep .form-field__input {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  outline: none;
+  transform: translateY(7px);
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+}
+
 .form-field {
   width: 100%;
   display: flex;
@@ -7,6 +21,7 @@
   border: 1px solid #CCC;
   border-radius: 8px;
   gap: 5px;
+  background: #FFF;
 
   &--disabled {
     opacity: 0.7;
@@ -28,7 +43,7 @@
 
   &__label {
     position: absolute;
-    top: 1px;
+    top: 2px;
     left: 0;
     width: 100%;
     color: #757575;
@@ -40,6 +55,9 @@
     font-size: 16px;
     line-height: 1;
     pointer-events: none;
+    background: #FFF;
+    z-index: 1;
+    padding-bottom: 10px;
   }
 
   &__required {
@@ -50,7 +68,18 @@
     .form-field__label {
       top: -5px;
       font-size: 12px;
+      padding-bottom: 0;
     }
+  }
+
+  &--no-label {
+    ::ng-deep .form-field__input {
+      transform: none;
+    }
+  }
+
+  &--input {
+    cursor: text;
   }
 
   &.ng-touched.ng-invalid {
@@ -60,18 +89,14 @@
       color: #EC0000;
     }
   }
-}
 
-::ng-deep .form-field__input {
-  width: 100%;
-  padding: 0;
-  border: none;
-  transform: translateY(7px);
-  background: none;
-  font-size: 16px;
-  outline: none;
+  &--textarea {
+    height: auto;
+    padding: 10px;
 
-  &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    ::ng-deep textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
   }
 }

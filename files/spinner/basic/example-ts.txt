@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.component';
+
+@Component({
+  selector: 'app-spinner-example-basic',
+  imports: [SpinnerComponent],
+  templateUrl: './spinner-example-basic.component.html',
+  styleUrl: './spinner-example-basic.component.scss',
+})
+export class SpinnerExampleBasicComponent {}

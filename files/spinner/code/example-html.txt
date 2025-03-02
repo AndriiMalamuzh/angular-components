@@ -1,0 +1,8 @@
+<div
+  class="spinner"
+  [style]="{
+    '--spinner-size': size() + 'px',
+    '--spinner-color': color(),
+    '--spinner-thickness': thickness() + 'px',
+  }"
+></div>

@@ -79,6 +79,13 @@ export const routes: Routes = [
       ).then(c => c.SlideToggleExampleComponent),
   },
   {
+    path: 'spinner',
+    loadComponent: () =>
+      import('./pages/spinner-example/spinner-example.component').then(
+        c => c.SpinnerExampleComponent
+      ),
+  },
+  {
     path: 'tabs',
     loadComponent: () =>
       import('./pages/tabs-example/tabs-example.component').then(

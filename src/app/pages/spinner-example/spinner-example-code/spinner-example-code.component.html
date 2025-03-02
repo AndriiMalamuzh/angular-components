@@ -1,0 +1,20 @@
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="spinner.component.html">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="spinner.component.ts">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="spinner.component.scss">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

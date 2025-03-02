@@ -80,6 +80,11 @@ export const MENU: MenuInterface[] = [
     img: 'slide-toggle.svg',
   },
   {
+    title: 'Spinner',
+    link: '/spinner',
+    img: 'spinner.svg',
+  },
+  {
     title: 'Tabs',
     link: '/tabs',
     img: 'tabs.svg',

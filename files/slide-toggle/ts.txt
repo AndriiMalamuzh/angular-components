@@ -7,7 +7,7 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-slide-toggle',
@@ -23,7 +23,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SlideToggleComponent {
+export class SlideToggleComponent implements ControlValueAccessor {
   disabled = model<boolean>(false);
   labelPosition = input<'before' | 'after'>('after');
   checked = signal<boolean>(false);

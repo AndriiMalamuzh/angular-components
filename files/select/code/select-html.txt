@@ -1,0 +1,17 @@
+<div class="select" #selectElement>
+  <div class="select__selected">{{ selectedValues().length ? selectedDisplayTexts().join(', ') : '' }}</div>
+  <div class="select__arrow" [style]="{'transform': isOpen() ? 'rotate(180deg)' : ''}">
+    <app-icon name="expand-more" [size]="20"></app-icon>
+  </div>
+</div>
+<ng-template #optionsTemplate>
+  <div class="select-options-wrap">
+    <div class="select-options-overlay" (click)="onOverlayClick()"></div>
+    <div class="select-options">
+      <ng-content select="[select-search]"></ng-content>
+      <div class="select-options__list">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</ng-template>

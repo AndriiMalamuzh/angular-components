@@ -1,0 +1,80 @@
+.select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+
+  &__selected {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(7px);
+    font-size: 16px;
+    flex-grow: 1;
+  }
+}
+
+.select-options-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99999998;
+}
+
+.select-options {
+  position: relative;
+  background: #FFF;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 99999999;
+
+  ::ng-deep {
+    .select-options__search {
+      padding: 10px;
+      border-bottom: 1px solid #CCCCCC;
+
+      input {
+        font-size: 16px;
+        height: 40px;
+        width: 100%;
+        padding: 0 8px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        outline: none;
+
+        &:hover {
+          border-color: var(--color-primary);
+        }
+
+        &:focus {
+          border-color: var(--color-primary);
+        }
+      }
+    }
+  }
+
+  &__list {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+
+      &-thumb {
+        border: 3px solid transparent;
+        background-clip: padding-box;
+        border-radius: 9999px;
+        background-color: var(--color-primary);
+
+        &:hover {
+          background-color: #1565AE;
+        }
+      }
+    }
+  }
+}

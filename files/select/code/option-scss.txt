@@ -1,0 +1,17 @@
+.option {
+  padding: 16px;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    background: #F5F5F5;
+  }
+
+  &.selected {
+    background: rgba(26, 127, 220, 0.15);
+    color: var(--color-primary);
+  }
+}

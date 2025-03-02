@@ -1,0 +1,49 @@
+import { ChangeDetectionStrategy, Component, model, signal } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
+import { OptionComponent } from 'src/app/shared/components/select/option/option.component';
+import { SelectComponent } from 'src/app/shared/components/select/select.component';
+import { FormsModule } from '@angular/forms';
+import { SelectSearchDirective } from 'src/app/shared/components/select/select-search.directive';
+
+@Component({
+  selector: 'app-select-example-search',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    OptionComponent,
+    SelectComponent,
+    FormsModule,
+    SelectSearchDirective,
+  ],
+  templateUrl: './select-example-search.component.html',
+  styleUrl: './select-example-search.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SelectExampleSearchComponent {
+  languages: string[] = [
+    'Ukrainian',
+    'English',
+    'German',
+    'Spanish',
+    'French',
+    'Italian',
+  ];
+  filteredLanguages = signal<string[]>(this.languages);
+  value = model<string>();
+  search = model<string>();
+
+  onSearch(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredLanguages.set(
+      this.languages.filter(language =>
+        language.toLowerCase().includes(searchTerm)
+      )
+    );
+  }
+
+  onSelectChanged(): void {
+    this.search.set('');
+    this.filteredLanguages.set(this.languages);
+  }
+}

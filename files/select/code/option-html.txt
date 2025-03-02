@@ -1,0 +1,3 @@
+<div class="option" [class.selected]="isSelected()">
+  <ng-content></ng-content>
+</div>

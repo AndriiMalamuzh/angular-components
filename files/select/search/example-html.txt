@@ -1,0 +1,21 @@
+<div class="search-select">
+  <app-form-field>
+    <app-form-field-label>Choose your language</app-form-field-label>
+    <app-select [(ngModel)]="value" (selectChange)="onSelectChanged()">
+      <div select-search>
+        <input
+          type="text"
+          placeholder="Type to search..."
+          (input)="onSearch($event)"
+          [(ngModel)]="search"
+        >
+      </div>
+      @for (language of filteredLanguages(); track $index) {
+        <app-option [value]="language">{{ language }}</app-option>
+      }
+      @if (!filteredLanguages()?.length) {
+        <div class="no-results">No Results</div>
+      }
+    </app-select>
+  </app-form-field>
+</div>

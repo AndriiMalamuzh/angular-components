@@ -1,0 +1,7 @@
+.search-select {
+  max-width: 300px;
+}
+
+.no-results {
+  padding: 10px;
+}

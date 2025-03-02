@@ -65,6 +65,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'select',
+    loadComponent: () =>
+      import('./pages/select-example/select-example.component').then(
+        c => c.SelectExampleComponent
+      ),
+  },
+  {
     path: 'slide-toggle',
     loadComponent: () =>
       import(

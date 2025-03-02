@@ -23,7 +23,7 @@ export const MENU: MenuInterface[] = [
   {
     title: 'Form filed',
     link: '/form-field',
-    img: 'input.svg',
+    img: 'form-field.svg',
   },
   // {
   //   title: 'Datepicker',
@@ -69,11 +69,11 @@ export const MENU: MenuInterface[] = [
     link: '/ripple',
     img: 'ripple.svg',
   },
-  // {
-  //   title: 'Select',
-  //   link: '/select',
-  //   img: 'select.svg',
-  // },
+  {
+    title: 'Select',
+    link: '/select',
+    img: 'select.svg',
+  },
   {
     title: 'Slide Toggle',
     link: '/slide-toggle',

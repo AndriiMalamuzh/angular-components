@@ -1,0 +1,35 @@
+<h2>Select with error</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="error-select">
+        <app-form-field>
+          <app-form-field-label>Choose your language</app-form-field-label>
+          <app-select [formControl]="language" [required]="true">
+            @for (language of languages; track $index) {
+              <app-option [value]="language">{{ language }}</app-option>
+            }
+          </app-select>
+          @if (language['touched'] && language.hasError('required')) {
+            <app-form-field-error>This field is required!</app-form-field-error>
+          }
+        </app-form-field>
+      </div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

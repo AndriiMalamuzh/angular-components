@@ -1,0 +1,43 @@
+<h2>Select with search</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="search-select">
+        <app-form-field>
+          <app-form-field-label>Choose your language</app-form-field-label>
+          <app-select [(ngModel)]="value" (selectChange)="onSelectChanged()">
+            <div select-search>
+              <input
+                type="text"
+                placeholder="Type to search..."
+                (input)="onSearch($event)"
+                [(ngModel)]="search"
+              >
+            </div>
+            @for (language of filteredLanguages(); track $index) {
+              <app-option [value]="language">{{ language }}</app-option>
+            }
+            @if (!filteredLanguages()?.length) {
+              <div class="no-results">No Results</div>
+            }
+          </app-select>
+        </app-form-field>
+      </div>
+    </app-tab>
+    <app-tab label="HTML">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="TS">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="SCSS">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

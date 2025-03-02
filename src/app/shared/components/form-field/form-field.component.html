@@ -1,13 +1,15 @@
 <div
   class="form-field"
-  [class.form-field--focused]="isFocused()"
+  [class.form-field--focused]="isFocused() || this.selectComponent()?.isOpen()"
   [class.form-field--has-value]="isFocused() || isHasValue()"
   [class.form-field--disabled]="isDisabled()"
   [class.form-field--no-label]="!labelComponent()"
   [class.form-field--input]="inputDirective()"
   [class.form-field--textarea]="isTextarea()"
+  [class.form-field--select]="selectComponent()"
   [class]="controlClasses"
   (click)="onFormFieldClick()"
+  #formFieldElement
 >
   <ng-content select="[form-field-prefix]" />
   <div class="form-field__wrap">
@@ -20,6 +22,7 @@
       </label>
     }
     <ng-content select="[input]" />
+    <ng-content select="app-select" />
   </div>
   <ng-content select="[form-field-suffix]" />
 </div>

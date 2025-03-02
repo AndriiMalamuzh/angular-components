@@ -1,0 +1,31 @@
+import { ChangeDetectionStrategy, Component, model } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
+import { OptionComponent } from 'src/app/shared/components/select/option/option.component';
+import { SelectComponent } from 'src/app/shared/components/select/select.component';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-select-example-disabled',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    OptionComponent,
+    SelectComponent,
+    FormsModule,
+  ],
+  templateUrl: './select-example-disabled.component.html',
+  styleUrl: './select-example-disabled.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SelectExampleDisabledComponent {
+  languages: string[] = [
+    'Ukrainian',
+    'English',
+    'German',
+    'Spanish',
+    'French',
+    'Italian',
+  ];
+  value = model<string>();
+}

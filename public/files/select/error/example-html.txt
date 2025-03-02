@@ -1,0 +1,13 @@
+<div class="error-select">
+  <app-form-field>
+    <app-form-field-label>Choose your language</app-form-field-label>
+    <app-select [formControl]="language" [required]="true">
+      @for (language of languages; track $index) {
+        <app-option [value]="language">{{ language }}</app-option>
+      }
+    </app-select>
+    @if (language['touched'] && language.hasError('required')) {
+      <app-form-field-error>This field is required!</app-form-field-error>
+    }
+  </app-form-field>
+</div>

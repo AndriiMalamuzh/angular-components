@@ -1,0 +1,33 @@
+import { ChangeDetectionStrategy, Component, model } from '@angular/core';
+import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
+import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
+import { OptionComponent } from 'src/app/shared/components/select/option/option.component';
+import { SelectComponent } from 'src/app/shared/components/select/select.component';
+import { FormFieldErrorComponent } from 'src/app/shared/components/form-field/form-field-error/form-field-error.component';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-select-example-error',
+  imports: [
+    FormFieldComponent,
+    FormFieldLabelComponent,
+    OptionComponent,
+    SelectComponent,
+    ReactiveFormsModule,
+    FormFieldErrorComponent,
+  ],
+  templateUrl: './select-example-error.component.html',
+  styleUrl: './select-example-error.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SelectExampleErrorComponent {
+  languages: string[] = [
+    'Ukrainian',
+    'English',
+    'German',
+    'Spanish',
+    'French',
+    'Italian',
+  ];
+  language = new FormControl(null, [Validators.required]);
+}

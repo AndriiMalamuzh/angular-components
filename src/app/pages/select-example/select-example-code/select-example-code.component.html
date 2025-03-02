@@ -1,0 +1,40 @@
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="select.component.html">
+      @if (fileContents['selectHtml']) {
+        <pre><code [highlightAuto]="fileContents['selectHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="select.component.ts">
+      @if (fileContents['selectTs']) {
+        <pre><code [highlightAuto]="fileContents['selectTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="select.component.scss">
+      @if (fileContents['selectScss']) {
+        <pre><code [highlightAuto]="fileContents['selectScss']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="select-search.directive.ts">
+      @if (fileContents['selectSearch']) {
+        <pre><code [highlightAuto]="fileContents['selectSearch']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="option.component.html">
+      @if (fileContents['optionHtml']) {
+        <pre><code [highlightAuto]="fileContents['optionHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="option.component.ts">
+      @if (fileContents['optionTs']) {
+        <pre><code [highlightAuto]="fileContents['optionTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="option.component.scss">
+      @if (fileContents['optionScss']) {
+        <pre><code [highlightAuto]="fileContents['optionScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

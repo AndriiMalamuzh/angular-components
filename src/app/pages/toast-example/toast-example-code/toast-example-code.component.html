@@ -1,0 +1,25 @@
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="toast.component.html">
+      @if (fileContents['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="toast.component.ts">
+      @if (fileContents['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="toast.component.scss">
+      @if (fileContents['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="toast.service.scss">
+      @if (fileContents['exampleService']) {
+        <pre><code [highlightAuto]="fileContents['exampleService']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

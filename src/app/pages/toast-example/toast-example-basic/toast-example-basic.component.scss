@@ -1,0 +1,45 @@
+.toast-example {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  button {
+    color: #FFF;
+  }
+
+  &__success {
+    background: var(--color-success);
+
+    &:hover {
+      background: var(--color-success);
+      opacity: 0.8;
+    }
+  }
+
+  &__error {
+    background: var(--color-error);
+
+    &:hover {
+      background: var(--color-error);
+      opacity: 0.8;
+    }
+  }
+
+  &__warning {
+    background: var(--color-warning);
+
+    &:hover {
+      background: var(--color-warning);
+      opacity: 0.8;
+    }
+  }
+
+  &__info {
+    background: var(--color-info);
+
+    &:hover {
+      background: var(--color-info);
+      opacity: 0.8;
+    }
+  }
+}

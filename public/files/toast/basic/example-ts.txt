@@ -1,0 +1,40 @@
+import { Component, inject } from '@angular/core';
+import { ButtonDirective } from 'src/app/shared/directives/button.directive';
+import { ToastService } from 'src/app/shared/components/toast/toast.service';
+
+@Component({
+  selector: 'app-toast-example-basic',
+  imports: [ButtonDirective],
+  templateUrl: './toast-example-basic.component.html',
+  styleUrl: './toast-example-basic.component.scss',
+})
+export class ToastExampleBasicComponent {
+  private toastService = inject(ToastService);
+
+  onSuccess(): void {
+    this.toastService.open({
+      message: 'Lorem ipsum dolor',
+    });
+  }
+
+  onError(): void {
+    this.toastService.open({
+      message: 'Lorem ipsum dolor sit',
+      type: 'error',
+    });
+  }
+
+  onWarning(): void {
+    this.toastService.open({
+      message: 'Lorem ipsum dolor sit amet!',
+      type: 'warning',
+    });
+  }
+
+  onInfo(): void {
+    this.toastService.open({
+      message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reprehenderit',
+      type: 'info',
+    });
+  }
+}

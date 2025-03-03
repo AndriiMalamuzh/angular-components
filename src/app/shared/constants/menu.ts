@@ -89,10 +89,11 @@ export const MENU: MenuInterface[] = [
     link: '/tabs',
     img: 'tabs.svg',
   },
-  // {
-  //   title: 'Toast',
-  //   link: '/toast'
-  // },
+  {
+    title: 'Toast',
+    link: '/toast',
+    img: 'toast.svg',
+  },
   // {
   //   title: 'Tooltip',
   //   link: '/tooltip'

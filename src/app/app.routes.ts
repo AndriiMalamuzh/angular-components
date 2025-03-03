@@ -92,4 +92,11 @@ export const routes: Routes = [
         c => c.TabsExampleComponent
       ),
   },
+  {
+    path: 'toast',
+    loadComponent: () =>
+      import('./pages/toast-example/toast-example.component').then(
+        c => c.ToastExampleComponent
+      ),
+  },
 ];

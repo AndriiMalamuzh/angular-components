@@ -1,0 +1,6 @@
+<div class="toast-example">
+  <button type="button" button view="flat" class="toast-example__success" (click)="onSuccess()">Success</button>
+  <button type="button" button view="flat" class="toast-example__error" (click)="onError()">Error</button>
+  <button type="button" button view="flat" class="toast-example__warning" (click)="onWarning()">Warning</button>
+  <button type="button" button view="flat" class="toast-example__info" (click)="onInfo()">Info</button>
+</div>

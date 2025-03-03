@@ -26,7 +26,7 @@ export class ToastService {
   private currentToast = signal<ComponentRef<ToastComponent> | null>(null);
 
   open({ message, type = 'success', duration = 3000 }: ToastConfig): void {
-    if (this.currentToast()) {
+    if (this.currentToast() !== null) {
       this.destroyToast(this.currentToast());
     }
 
@@ -44,6 +44,10 @@ export class ToastService {
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
       .rootNodes[0] as HTMLElement;
     document.body.appendChild(domElem);
+
+    setTimeout(() => {
+      this.destroyToast(componentRef);
+    }, duration + 150);
   }
 
   close(): void {

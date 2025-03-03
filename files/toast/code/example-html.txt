@@ -1,0 +1,18 @@
+<div
+  class="toast toast--{{type()}}"
+  [class.toast--show]="show()"
+  role="alert"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <div class="toast__icon">
+    <app-icon [name]="'toast-' + type()" [size]="18" />
+  </div>
+  <div class="toast__content">
+    <h3 class="toast__title">{{ type() }}</h3>
+    <p class="toast__text">{{ message() }}</p>
+  </div>
+  <button type="button" class="toast__close" (click)="onClose()">
+    <app-icon name="close" />
+  </button>
+</div>

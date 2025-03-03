@@ -46,4 +46,20 @@
   <symbol id="close" viewBox="0 0 24 24">
     <path d="M6.39994 18.6538L5.34619 17.6L10.9462 12L5.34619 6.4L6.39994 5.34625L11.9999 10.9463L17.5999 5.34625L18.6537 6.4L13.0537 12L18.6537 17.6L17.5999 18.6538L11.9999 13.0538L6.39994 18.6538Z" fill="currentColor"/>
   </symbol>
+
+  <symbol id="toast-success" viewBox="0 0 24 24">
+    <path d="M9.5501 18L3.8501 12.3L5.2751 10.875L9.5501 15.15L18.7251 5.97498L20.1501 7.39998L9.5501 18Z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="toast-error" viewBox="0 0 24 24">
+    <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="toast-warning" viewBox="0 0 24 24">
+    <path d="M11 14V5H13V14H11ZM11 19V17H13V19H11Z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="toast-info" viewBox="0 0 24 24">
+    <path d="M13 10L13 19L11 19L11 10L13 10ZM13 5L13 7L11 7L11 5L13 5Z" fill="currentColor"/>
+  </symbol>
 </svg>

@@ -28,5 +28,10 @@ jobs:
       - name: Test
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
+      - name: Set Git Identity
+        run: |
+          git config --global user.email "andrey.malamuzh.1994@gmail.com"
+          git config --global user.name "AndriiMalamuzh"
+
       - name: Deploy
         run: npm run deploy

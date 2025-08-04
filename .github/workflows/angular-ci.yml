@@ -3,34 +3,39 @@ name: Angular CI/CD
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout репозиторій
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Встановити Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Встановити залежності
+      - name: Install dependencies
         run: npm ci
 
-      - name: Побудувати Angular-проєкт
+      - name: Build Angular project
         run: npm run build -- --configuration production
 
-      - name: Встановити Git-ідентичність
+      - name: Run tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Set Git identity
         run: |
           git config --global user.email "andrey.malamuzh.1994@gmail.com"
           git config --global user.name "AndriiMalamuzh"
 
-      - name: Додати токен до Git remote
+      - name: Add GitHub token to remote
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-      - name: Деплой
+      - name: Deploy
         run: npm run deploy

@@ -30,6 +30,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'dialog',
+    loadComponent: () =>
+      import('./pages/dialog-example/dialog-example.component').then(
+        c => c.DialogExampleComponent
+      ),
+  },
+  {
     path: 'form-field',
     loadComponent: () =>
       import('./pages/form-field-example/form-field-example.component').then(

@@ -1,0 +1,8 @@
+<div class="dialog" [class]="className">
+  <div class="dialog-backdrop" (click)="onBackdropClick()" [@backdrop]></div>
+  <div class="dialog-wrapper">
+    <div class="dialog-container" [@dialog]>
+      <ng-template #dialogContent></ng-template>
+    </div>
+  </div>
+</div>

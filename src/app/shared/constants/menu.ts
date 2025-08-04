@@ -29,10 +29,10 @@ export const MENU: MenuInterface[] = [
   //   title: 'Datepicker',
   //   link: '/datepicker'
   // },
-  // {
-  //   title: 'Dialog',
-  //   link: '/dialog'
-  // },
+  {
+    title: 'Dialog',
+    link: '/dialog',
+  },
   // {
   //   title: 'Drag and Drop',
   //   link: '/drag-and-drop'

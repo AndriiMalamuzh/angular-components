@@ -26,7 +26,7 @@ jobs:
         run: npm run build
 
       - name: Test
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+        run: npm run test
 
       - name: Deploy
         run: npm run deploy

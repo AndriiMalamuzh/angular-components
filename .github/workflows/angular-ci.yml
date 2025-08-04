@@ -27,9 +27,3 @@ jobs:
 
       - name: Test
         run: npm test -- --watch=false --browsers=ChromeHeadless
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

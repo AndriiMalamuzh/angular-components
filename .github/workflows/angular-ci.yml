@@ -28,11 +28,9 @@ jobs:
       - name: Test
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
-      - name: Set Git Email
-        run: git config --global user.email "andrey.malamuzh.1994@gmail.com"
-
-      - name: Set Git Username
-        run: git config --global user.name "AndriiMalamuzh"
-
-      - name: Deploy
-        run: npm run deploy
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist/angular-components
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -41,3 +41,25 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Cursor
+/.cursor
+/.cursor/*
+/.cursor/rules
+/.cursor/rules/*
+.cursorignore
+
+# AI Assistant
+/.aiassistant
+/.aiassistant/*
+/.ai
+/.ai/*
+
+# Junie
+/.junie
+/.junie/*
+
+# Claude
+CLAUDE.md
+/.claude
+/.claude/*

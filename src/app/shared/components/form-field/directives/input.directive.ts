@@ -61,8 +61,9 @@ export class InputDirective {
     this.blurEvent.emit();
   }
 
-  @HostListener('input', ['$event.target.value'])
-  handleInput(value: string) {
-    this.inputEvent.emit(value);
+  @HostListener('input', ['$event'])
+  handleInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.inputEvent.emit(input.value);
   }
 }

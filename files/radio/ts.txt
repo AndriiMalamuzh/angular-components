@@ -1,9 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   forwardRef,
   input,
   model,
+  output,
+  viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -21,38 +24,52 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioComponent implements ControlValueAccessor {
-  value = input.required<any>();
-  name = input.required<string>();
-  checked = model<boolean>(false);
-  disabled = model<boolean>(false);
-  labelPosition = input<'before' | 'after'>('after');
+  readonly value = input.required<string>();
+  readonly name = input.required<string>();
+  readonly checked = model<boolean>(false);
+  readonly disabled = model<boolean>(false);
+  readonly labelPosition = input<'before' | 'after'>('after');
 
-  public changed: (value: string) => void = () => {};
-  public touched: () => void = () => {};
+  readonly radioChange = output<string>();
+
+  readonly inputRef =
+    viewChild.required<ElementRef<HTMLInputElement>>('inputRef');
+
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   writeValue(value: string): void {
     this.checked.set(value === this.value());
   }
 
-  onChange(event: Event) {
-    const value: string = (event.target as HTMLInputElement).value;
-    this.changed(value);
-    this.checked.set(value === this.value());
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
   }
 
-  registerOnChange(fn: any): void {
-    this.changed = fn;
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
   }
 
-  onTouched(): void {
-    this.touched();
-  }
-
-  registerOnTouched(fn: any): void {
-    this.touched = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
+  }
+
+  onChange(event: Event): void {
+    if (this.disabled()) return;
+    this.commitChange((event.target as HTMLInputElement).value);
+  }
+
+  onRadioKeydown(event: KeyboardEvent): void {
+    if ((event.key === 'Enter' || event.key === ' ') && !this.disabled()) {
+      event.preventDefault();
+      this.inputRef().nativeElement.click();
+    }
+  }
+
+  private commitChange(newValue: string): void {
+    this.checked.set(newValue === this.value());
+    this.onChangeFn(newValue);
+    this.onTouchedFn();
+    this.radioChange.emit(newValue);
   }
 }

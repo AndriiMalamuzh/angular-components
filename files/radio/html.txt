@@ -1,19 +1,22 @@
 <label
   class="radio-button"
-  [class]="{
-    'radio-button--label-before': labelPosition() === 'before',
-    'radio-button--disabled': disabled()
-  }"
->
+  [class.radio-button--label-before]="labelPosition() === 'before'"
+  [class.radio-button--disabled]="disabled()">
   <input
+    #inputRef
+    class="radio-button__input"
     type="radio"
     [name]="name()"
     [value]="value()"
     [checked]="checked()"
-    (change)="onChange($event)"
-    (blur)="onTouched()"
     [disabled]="disabled()"
-  />
-  <span class="radio-button__box"></span>
-  <span class="radio-button__label"><ng-content></ng-content></span>
+    (change)="onChange($event)" />
+  <span
+    class="radio-button__box"
+    role="radio"
+    [attr.aria-checked]="checked()"
+    [attr.aria-disabled]="disabled() || null"
+    [tabindex]="disabled() ? -1 : 0"
+    (keydown)="onRadioKeydown($event)"></span>
+  <span class="radio-button__label"><ng-content /></span>
 </label>

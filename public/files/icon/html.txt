@@ -1,3 +1,7 @@
-<svg [attr.width]="size()" [attr.height]="size()">
-  <use [attr.xlink:href]="'/icons.svg#' + name()"></use>
+<svg
+  [attr.width]="size()"
+  [attr.height]="size()"
+  aria-hidden="true"
+  focusable="false">
+  <use [attr.href]="iconHref()" />
 </svg>

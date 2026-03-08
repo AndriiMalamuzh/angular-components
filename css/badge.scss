@@ -1,10 +1,10 @@
 .badge {
   position: relative;
 
-  &-content {
+  &__content {
     position: absolute;
-    bottom: calc(100% - 12px);
-    left: calc(100% - 12px);
+    bottom: calc(100% - var(--badge-offset-y, 12px));
+    left: calc(100% - var(--badge-offset-x, 12px));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,5 +16,6 @@
     font-weight: 500;
     color: #FFF;
     background: #DC1A1A;
+    white-space: nowrap;
   }
 }

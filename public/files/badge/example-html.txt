@@ -1,11 +1,11 @@
 <div class="icons">
-  <div class="icon" badge="1">
-    <app-icon name="phone"></app-icon>
+  <div class="icon" badge="1" badgeAriaLabel="1 new message">
+    <app-icon name="phone" />
   </div>
-  <div class="icon" badge="5">
-    <app-icon name="bell"></app-icon>
+  <div class="icon" badge="5" badgeAriaLabel="5 new messages">
+    <app-icon name="bell" />
   </div>
-  <div class="icon" badge="10">
-    <app-icon name="mail"></app-icon>
+  <div class="icon" badge="10" badgeAriaLabel="10 new messages">
+    <app-icon name="mail" />
   </div>
 </div>

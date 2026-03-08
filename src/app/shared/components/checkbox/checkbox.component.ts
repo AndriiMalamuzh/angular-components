@@ -12,7 +12,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   selector: 'app-checkbox',
   imports: [],
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
+  styleUrl: './checkbox.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -23,31 +23,35 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor {
-  value = input<string>('');
-  checked = model<boolean>(false);
-  indeterminate = model<boolean>(false);
-  disabled = model<boolean>(false);
-  labelPosition = input<'before' | 'after'>('after');
+  readonly value = input<string>('');
+  readonly checked = model<boolean>(false);
+  readonly indeterminate = model<boolean>(false);
+  readonly disabled = model<boolean>(false);
+  readonly labelPosition = input<'before' | 'after'>('after');
 
-  checkboxChange = output<boolean>();
+  readonly checkboxChange = output<boolean>();
 
   private onChangeFn: (value: boolean) => void = () => {};
   private onTouchedFn: () => void = () => {};
 
-  toggleChecked() {
-    if (this.disabled()) {
-      return;
-    }
-    this.checked.update(res => !res);
+  private commitChange(newValue: boolean): void {
+    this.checked.set(newValue);
     this.indeterminate.set(false);
-    this.onChangeFn(this.checked());
+    this.onChangeFn(newValue);
     this.onTouchedFn();
-    this.checkboxChange.emit(this.checked());
+    this.checkboxChange.emit(newValue);
   }
 
-  onChange(event: Event) {
-    this.checked.set((event.target as HTMLInputElement).checked);
-    this.onChangeFn(this.checked());
+  // Used only from keyboard — mouse clicks go through onChange via native label→input
+  toggleChecked(): void {
+    if (this.disabled()) return;
+    this.commitChange(!this.checked());
+  }
+
+  // Fires via native label→input click
+  onChange(event: Event): void {
+    if (this.disabled()) return;
+    this.commitChange((event.target as HTMLInputElement).checked);
   }
 
   writeValue(value: boolean): void {
@@ -62,12 +66,13 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouchedFn = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
   }
 
-  onCheckboxPressEnter(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && !this.disabled()) {
+  onCheckboxKeydown(event: KeyboardEvent): void {
+    if ((event.key === 'Enter' || event.key === ' ') && !this.disabled()) {
+      event.preventDefault();
       this.toggleChecked();
     }
   }

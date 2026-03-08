@@ -1,18 +1,14 @@
 <div
   class="slide-toggle"
-  [class]="{
-    'slide-toggle--checked': checked(),
-    'slide-toggle--label-before': labelPosition() === 'before',
-    'slide-toggle--disabled': disabled()
-  }"
+  [class.slide-toggle--checked]="checked()"
+  [class.slide-toggle--label-before]="labelPosition() === 'before'"
+  [class.slide-toggle--disabled]="disabled()"
+  [attr.tabindex]="disabled() ? -1 : 0"
+  role="switch"
+  [attr.aria-checked]="checked()"
+  [attr.aria-disabled]="disabled() || null"
   (click)="toggle()"
->
-  <div
-    class="slide-toggle__switch"
-    [attr.tabindex]="disabled() ? -1 : 0"
-    role="switch"
-    [attr.aria-checked]="checked()"
-    (keydown)="onTogglePressEnter($event)"
-  ></div>
-  <span class="slide-toggle__label"><ng-content></ng-content></span>
+  (keydown)="onKeydown($event)">
+  <div class="slide-toggle__switch"></div>
+  <span class="slide-toggle__label"><ng-content /></span>
 </div>

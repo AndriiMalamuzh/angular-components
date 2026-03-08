@@ -4,6 +4,15 @@
 
 .slide-toggle {
   display: inline-flex;
+
+  &:focus-visible {
+    outline: none;
+
+    .slide-toggle__switch {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
   align-items: center;
   vertical-align: bottom;
   gap: 10px;
@@ -36,6 +45,7 @@
       left: 2px;
       transition: transform 0.3s;
     }
+
   }
 
   &--disabled {

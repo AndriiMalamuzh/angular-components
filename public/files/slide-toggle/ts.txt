@@ -5,7 +5,6 @@ import {
   input,
   model,
   output,
-  signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -24,21 +23,22 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SlideToggleComponent implements ControlValueAccessor {
-  disabled = model<boolean>(false);
-  labelPosition = input<'before' | 'after'>('after');
-  checked = signal<boolean>(false);
+  readonly disabled = model<boolean>(false);
+  readonly labelPosition = input<'before' | 'after'>('after');
+  readonly checked = model<boolean>(false);
 
-  toggleChange = output<boolean>();
+  readonly toggleChange = output<boolean>();
 
-  private onChange: (value: boolean) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChangeFn: (value: boolean) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   toggle(): void {
     if (this.disabled()) {
       return;
     }
     this.checked.update(res => !res);
-    this.onChange(this.checked());
+    this.onChangeFn(this.checked());
+    this.onTouchedFn();
     this.toggleChange.emit(this.checked());
   }
 
@@ -47,19 +47,20 @@ export class SlideToggleComponent implements ControlValueAccessor {
   }
 
   registerOnChange(fn: (value: boolean) => void): void {
-    this.onChange = fn;
+    this.onChangeFn = fn;
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+    this.onTouchedFn = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
   }
 
-  onTogglePressEnter(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && !this.disabled()) {
+  onKeydown(event: KeyboardEvent): void {
+    if ((event.key === 'Enter' || event.key === ' ') && !this.disabled()) {
+      event.preventDefault();
       this.toggle();
     }
   }

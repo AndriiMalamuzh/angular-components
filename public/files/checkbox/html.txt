@@ -1,24 +1,20 @@
-<div
+<label
   class="checkbox"
-  [class]="{
-    'checkbox--label-before': labelPosition() === 'before',
-    'checkbox--disabled': disabled()
-  }"
-  (click)="toggleChecked()"
->
+  [class.checkbox--label-before]="labelPosition() === 'before'"
+  [class.checkbox--disabled]="disabled()">
   <input
     class="checkbox__input"
     type="checkbox"
-    [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
     [checked]="checked()"
     (change)="onChange($event)"
     [value]="value()"
-    [disabled]="disabled()"
-  />
-  <div
+    [disabled]="disabled()" />
+  <span
     class="checkbox__box"
+    role="checkbox"
+    [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
+    [attr.aria-disabled]="disabled() || null"
     [attr.tabindex]="disabled() ? -1 : 0"
-    (keydown)="onCheckboxPressEnter($event)"
-  ></div>
-  <span class="checkbox__label"><ng-content></ng-content></span>
-</div>
+    (keydown)="onCheckboxKeydown($event)"></span>
+  <span class="checkbox__label"><ng-content /></span>
+</label>

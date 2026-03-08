@@ -13,15 +13,6 @@
     flex-direction: row-reverse;
   }
 
-  &__box {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #BBBBBB;
-    background: #FFF;
-    border-radius: 3px;
-  }
-
   &__input {
     display: none;
 
@@ -36,22 +27,36 @@
         top: 1px;
         width: 6px;
         height: 12px;
-        border: solid #FFFFFF;
+        border: solid #ffffff;
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
       }
     }
+  }
 
-    &[aria-checked='mixed'] + .checkbox__box {
+  &__box {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bbbbbb;
+    background: #fff;
+    border-radius: 3px;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    &[aria-checked='mixed'] {
       background: var(--color-primary);
       border-color: var(--color-primary);
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         height: 2px;
         width: 14px;
-        background: #FFF;
+        background: #fff;
         top: 8px;
         left: 2px;
       }

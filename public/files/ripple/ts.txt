@@ -19,19 +19,25 @@ export class RippleDirective {
     const ripple = this.renderer.createElement('span');
     this.renderer.addClass(ripple, 'ripple');
 
-    const circleDiameter = Math.sqrt(rect.width ** 2 + rect.height ** 2) * 2;
-    const offsetX = event.clientX - rect.left - circleDiameter / 2;
-    const offsetY = event.clientY - rect.top - circleDiameter / 2;
+    const diameter = Math.sqrt(rect.width ** 2 + rect.height ** 2) * 2;
+    const offsetX = event.clientX - rect.left - diameter / 2;
+    const offsetY = event.clientY - rect.top - diameter / 2;
 
-    this.renderer.setStyle(ripple, 'width', `${circleDiameter}px`);
-    this.renderer.setStyle(ripple, 'height', `${circleDiameter}px`);
+    this.renderer.setStyle(ripple, 'width', `${diameter}px`);
+    this.renderer.setStyle(ripple, 'height', `${diameter}px`);
     this.renderer.setStyle(ripple, 'top', `${offsetY}px`);
     this.renderer.setStyle(ripple, 'left', `${offsetX}px`);
 
     this.renderer.appendChild(el, ripple);
 
-    setTimeout(() => {
-      this.renderer.removeChild(el, ripple);
-    }, 1000);
+    ripple.addEventListener(
+      'animationend',
+      () => {
+        if (el.contains(ripple)) {
+          this.renderer.removeChild(el, ripple);
+        }
+      },
+      { once: true }
+    );
   }
 }

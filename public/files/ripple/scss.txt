@@ -4,19 +4,16 @@
 }
 
 .ripple {
-  width: 0;
-  height: 0;
   border-radius: 50%;
   background: rgba(205, 205, 205, 0.40);
   transform: scale(0);
   position: absolute;
   opacity: 1;
-  animation: ripple .4s linear;
+  animation: ripple 0.4s ease-out forwards;
 }
 
-
 @keyframes ripple {
-  100% {
+  to {
     transform: scale(2);
     opacity: 0;
   }

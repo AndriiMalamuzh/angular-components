@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ExampleComponent } from 'src/app/shared/components/example/example.component';
@@ -34,6 +34,9 @@ export class ButtonExampleComponent implements OnInit {
     codeScss: '',
   };
 
+  readonly flatLoading = signal<boolean>(false);
+  readonly strokedLoading = signal<boolean>(false);
+
   ngOnInit(): void {
     const fileMappings = {
       '/button/example-html.txt': 'exampleHtml',
@@ -55,5 +58,15 @@ export class ButtonExampleComponent implements OnInit {
         next: res => (this.fileContents[key] = res),
         error: error => console.error(`Error loading file ${url}`, error),
       });
+  }
+
+  onFlatLoadingClick(): void {
+    this.flatLoading.set(true);
+    setTimeout(() => this.flatLoading.set(false), 2000);
+  }
+
+  onStrokedLoadingClick(): void {
+    this.strokedLoading.set(true);
+    setTimeout(() => this.strokedLoading.set(false), 2000);
   }
 }

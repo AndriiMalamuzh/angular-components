@@ -14,4 +14,17 @@ import {IconComponent} from "../../components/icon/icon.component";
   templateUrl: './button-example.component.html',
   styleUrl: './button-example.component.scss'
 })
-export class ButtonExampleComponent {}
+export class ButtonExampleComponent {
+  readonly flatLoading = signal<boolean>(false);
+  readonly strokedLoading = signal<boolean>(false);
+
+  onFlatLoadingClick(): void {
+    this.flatLoading.set(true);
+    setTimeout(() => this.flatLoading.set(false), 2000);
+  }
+
+  onStrokedLoadingClick(): void {
+    this.strokedLoading.set(true);
+    setTimeout(() => this.strokedLoading.set(false), 2000);
+  }
+}

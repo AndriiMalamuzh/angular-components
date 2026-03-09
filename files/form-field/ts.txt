@@ -1,21 +1,28 @@
 import {
-  AfterViewInit,
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
   effect,
   ElementRef,
-  OnChanges,
   signal,
-  SimpleChanges,
   viewChild,
 } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { EMPTY, merge, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { InputDirective } from 'src/app/shared/components/form-field/directives/input.directive';
 import { NgControl } from '@angular/forms';
 import { FormFieldErrorComponent } from 'src/app/shared/components/form-field/form-field-error/form-field-error.component';
 import { FormFieldLabelComponent } from 'src/app/shared/components/form-field/form-field-label/form-field-label.component';
 import { SelectComponent } from 'src/app/shared/components/select/select.component';
+
+function isNonEmpty(v: unknown): boolean {
+  if (v == null) return false;
+  if (typeof v === 'string' || Array.isArray(v)) return v.length > 0;
+  return true;
+}
 
 @Component({
   selector: 'app-form-field',
@@ -24,51 +31,89 @@ import { SelectComponent } from 'src/app/shared/components/select/select.compone
   styleUrl: './form-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormFieldComponent implements AfterViewInit, OnChanges {
-  formFieldElement = viewChild<ElementRef>('formFieldElement');
-  inputDirective = contentChild(InputDirective);
-  selectComponent = contentChild(SelectComponent);
-  errorComponent = contentChild(FormFieldErrorComponent);
-  labelComponent = contentChild(FormFieldLabelComponent);
-  ngControl = contentChild(NgControl);
+export class FormFieldComponent {
+  readonly formFieldElement = viewChild<ElementRef>('formFieldElement');
+  readonly inputDirective = contentChild(InputDirective);
+  readonly selectComponent = contentChild(SelectComponent);
+  readonly errorComponent = contentChild(FormFieldErrorComponent);
+  readonly labelComponent = contentChild(FormFieldLabelComponent);
+  readonly ngControl = contentChild(NgControl);
 
-  inputId = signal<string>(`input-${crypto.randomUUID()}`);
-  isFocused = signal(false);
-  isHasValue = signal(false);
-  isDisabled = signal(false);
-  isRequired = signal(false);
-  isTextarea = computed(() => {
+  readonly inputId = signal<string>(`input-${crypto.randomUUID()}`);
+  readonly isFocused = signal(false);
+  readonly isHasValue = signal(false);
+  readonly isDisabled = signal(false);
+  readonly isRequired = signal(false);
+  readonly isTextarea = computed(() => {
     return (
       this.inputDirective()?.el?.nativeElement?.tagName?.toLowerCase() ===
       'textarea'
     );
   });
 
+  private readonly controlClasses$ = toObservable(this.ngControl).pipe(
+    switchMap(ngControl => {
+      const control = ngControl?.control;
+      if (!control) return of('');
+      return merge(of(null), control.events).pipe(
+        map(() =>
+          [
+            control.touched ? 'ng-touched' : 'ng-untouched',
+            control.dirty ? 'ng-dirty' : 'ng-pristine',
+            control.invalid ? 'ng-invalid' : 'ng-valid',
+          ].join(' ')
+        )
+      );
+    })
+  );
+  readonly controlClasses = toSignal(this.controlClasses$, {
+    initialValue: '',
+  });
+
+  private readonly controlValue = toSignal(
+    toObservable(this.ngControl).pipe(
+      switchMap(ngControl => {
+        const control = ngControl?.control;
+        if (!control) return EMPTY;
+        return merge(of(control.value), control.valueChanges);
+      })
+    )
+  );
+
+  private readonly controlDisabled = toSignal(
+    toObservable(this.ngControl).pipe(
+      switchMap(ngControl => {
+        const control = ngControl?.control;
+        if (!control) return EMPTY;
+        return merge(of(null), control.events).pipe(
+          map(() => control.disabled)
+        );
+      })
+    )
+  );
+
   constructor() {
+    afterNextRender(() => {
+      this.updateValues();
+    });
+
     effect(() => {
       if (this.selectComponent()) {
-        this.isHasValue.set(!!this.selectComponent()?.selectedValues()?.length);
+        this.isHasValue.set(
+          isNonEmpty(this.selectComponent()?.selectedValues())
+        );
       }
     });
-  }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.updateValues();
+    effect(() => {
+      const v = this.controlValue();
+      if (v !== undefined) this.isHasValue.set(isNonEmpty(v));
     });
 
-    if (this.ngControl()?.control) {
-      this.ngControl().control.valueChanges?.subscribe(value => {
-        this.isHasValue.set(!!value?.length);
-      });
-      this.isHasValue.set(!!this.ngControl().control.value);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['ngControl']) {
-      this.updateValues();
-    }
+    effect(() => {
+      const disabled = this.controlDisabled();
+      if (disabled !== undefined) this.isDisabled.set(disabled);
+    });
   }
 
   updateValues(): void {
@@ -79,35 +124,23 @@ export class FormFieldComponent implements AfterViewInit, OnChanges {
       this.inputDirective().onFocus(() => this.isFocused.set(true));
       this.inputDirective().onBlur(() => this.isFocused.set(false));
       this.inputDirective().onInput((value: string) =>
-        this.isHasValue.set(value.length > 0)
+        this.isHasValue.set(isNonEmpty(value))
       );
     } else if (this.selectComponent()) {
       this.isDisabled.set(this.selectComponent().disabled());
       this.isRequired.set(this.selectComponent().required());
     }
     if (this.ngControl()?.control) {
-      this.isHasValue.set(this.ngControl().control?.value?.length > 0);
+      this.isHasValue.set(isNonEmpty(this.ngControl().control?.value));
     }
   }
 
   onFormFieldClick(): void {
     if (this.inputDirective() && !this.isDisabled()) {
-      this.inputDirective()?.focus();
+      this.inputDirective().focus();
     }
     if (this.selectComponent() && !this.isDisabled()) {
       this.selectComponent().toggleDropdown();
     }
-  }
-
-  get controlClasses(): string {
-    if (!this.ngControl() || !this.ngControl().control) return '';
-
-    return [
-      this.ngControl().control.touched ? 'ng-touched' : 'ng-untouched',
-      this.ngControl().control.dirty ? 'ng-dirty' : 'ng-pristine',
-      this.ngControl().control.invalid ? 'ng-invalid' : 'ng-valid',
-    ]
-      .filter(Boolean)
-      .join(' ');
   }
 }

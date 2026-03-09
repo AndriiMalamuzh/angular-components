@@ -1,10 +1,7 @@
-import { Directive, ElementRef, HostBinding, inject } from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[form-field-suffix]',
+  host: { class: 'form-field__suffix' },
 })
-export class FormFieldSuffixDirective {
-  public elementRef = inject(ElementRef<HTMLElement>);
-
-  @HostBinding('class') className = 'form-field__suffix';
-}
+export class FormFieldSuffixDirective {}

@@ -1,21 +1,22 @@
 <div
   class="form-field"
-  [class.form-field--focused]="isFocused() || this.selectComponent()?.isOpen()"
+  tabindex="-1"
+  [class.form-field--focused]="isFocused() || selectComponent()?.isOpen()"
   [class.form-field--has-value]="isFocused() || isHasValue()"
   [class.form-field--disabled]="isDisabled()"
   [class.form-field--no-label]="!labelComponent()"
   [class.form-field--input]="inputDirective()"
   [class.form-field--textarea]="isTextarea()"
   [class.form-field--select]="selectComponent()"
-  [class]="controlClasses"
+  [class]="controlClasses()"
   (click)="onFormFieldClick()"
-  #formFieldElement
->
+  (keydown.enter)="onFormFieldClick()"
+  #formFieldElement>
   <ng-content select="[form-field-prefix]" />
   <div class="form-field__wrap">
     @if (labelComponent()) {
       <label for="{{ inputId() }}" class="form-field__label">
-        <ng-content select="app-form-field-label"></ng-content>
+        <ng-content select="app-form-field-label" />
         @if (isRequired()) {
           <span class="form-field__required">*</span>
         }
@@ -27,6 +28,6 @@
   <ng-content select="[form-field-suffix]" />
 </div>
 @if (!errorComponent()) {
-  <ng-content select="app-form-field-hint"></ng-content>
+  <ng-content select="app-form-field-hint" />
 }
-<ng-content select="app-form-field-error"></ng-content>
+<ng-content select="app-form-field-error" />

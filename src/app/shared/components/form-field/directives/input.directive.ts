@@ -1,23 +1,20 @@
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  inject,
-  output,
-} from '@angular/core';
+import { Directive, ElementRef, inject, output } from '@angular/core';
 
 @Directive({
   selector: '[input]',
+  host: {
+    class: 'form-field__input',
+    '(focus)': 'handleFocus()',
+    '(blur)': 'handleBlur()',
+    '(input)': 'handleInput($event)',
+  },
 })
 export class InputDirective {
-  public el = inject(ElementRef<HTMLInputElement>);
+  readonly el = inject(ElementRef<HTMLInputElement>);
 
-  focusEvent = output<void>();
-  blurEvent = output<void>();
-  inputEvent = output<string>();
-
-  @HostBinding('class') className = 'form-field__input';
+  readonly focusEvent = output<void>();
+  readonly blurEvent = output<void>();
+  readonly inputEvent = output<string>();
 
   setId(id: string) {
     this.el.nativeElement.id = id;
@@ -51,17 +48,14 @@ export class InputDirective {
     this.inputEvent.subscribe(callback);
   }
 
-  @HostListener('focus')
   handleFocus() {
     this.focusEvent.emit();
   }
 
-  @HostListener('blur')
   handleBlur() {
     this.blurEvent.emit();
   }
 
-  @HostListener('input', ['$event'])
   handleInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.inputEvent.emit(input.value);

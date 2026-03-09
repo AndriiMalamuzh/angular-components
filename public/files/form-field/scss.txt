@@ -114,4 +114,11 @@
       background: none;
     }
   }
+
+  ::ng-deep {
+    .form-field__prefix,
+    .form-field__suffix, {
+      flex-shrink: 0;
+    }
+  }
 }

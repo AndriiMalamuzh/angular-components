@@ -22,8 +22,13 @@ export class OptionComponent {
 
   readonly value = input<string>();
   readonly isSelected = signal<boolean>(false);
+  readonly isFocused = signal<boolean>(false);
 
   onClick(): void {
     this.select.selectOption(this);
+  }
+
+  scrollIntoView(): void {
+    this.el.nativeElement.scrollIntoView({ block: 'nearest' });
   }
 }

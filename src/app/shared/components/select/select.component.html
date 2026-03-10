@@ -10,8 +10,15 @@
 </div>
 <ng-template #optionsTemplate>
   <div class="select-options-wrap">
-    <div class="select-options-overlay" (click)="onOverlayClick()"></div>
-    <div class="select-options">
+    <div
+      class="select-options-overlay"
+      aria-hidden="true"
+      (click)="onOverlayClick()"></div>
+    <div
+      class="select-options"
+      role="listbox"
+      [id]="listboxId"
+      [attr.aria-multiselectable]="multiple()">
       <ng-content select="[select-search]" />
       <div class="select-options__list">
         <ng-content />

@@ -1,7 +1,7 @@
 <div
   class="form-field"
   tabindex="-1"
-  [class.form-field--focused]="isFocused() || selectComponent()?.isOpen()"
+  [class.form-field--focused]="isFocused() || selectComponent()?.isOpen() || selectComponent()?.hasFocus()"
   [class.form-field--has-value]="isFocused() || isHasValue()"
   [class.form-field--disabled]="isDisabled()"
   [class.form-field--no-label]="!labelComponent()"

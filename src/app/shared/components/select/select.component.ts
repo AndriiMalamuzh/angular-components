@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   effect,
@@ -8,6 +9,7 @@ import {
   output,
   Renderer2,
   signal,
+  TemplateRef,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -18,6 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-select',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IconComponent],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
@@ -30,24 +33,24 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class SelectComponent implements ControlValueAccessor {
-  private viewContainerRef = inject(ViewContainerRef);
-  private renderer = inject(Renderer2);
-  private formFieldComponent = inject(FormFieldComponent);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly formFieldComponent = inject(FormFieldComponent);
 
-  optionsTemplate = viewChild<any>('optionsTemplate');
-  options = contentChildren(OptionComponent);
+  readonly optionsTemplate = viewChild<TemplateRef<void>>('optionsTemplate');
+  readonly options = contentChildren(OptionComponent);
 
-  multiple = input<boolean>(false);
-  disabled = input<boolean>(false);
-  required = input<boolean>(false);
+  readonly multiple = input<boolean>(false);
+  readonly disabled = input<boolean>(false);
+  readonly required = input<boolean>(false);
 
-  selectChange = output<string[] | string>();
+  readonly selectChange = output<string[] | string>();
 
-  selectedValues = signal<string[] | string>('');
-  selectedDisplayTexts = signal<string[]>([]);
-  isOpen = signal<boolean>(false);
+  readonly selectedValues = signal<string[] | string>('');
+  readonly selectedDisplayTexts = signal<string[]>([]);
+  readonly isOpen = signal<boolean>(false);
 
-  private onChange: (value: any) => void = () => {};
+  private onChange: (value: string[] | string) => void = () => {};
   private onTouched: () => void = () => {};
 
   constructor() {
@@ -56,33 +59,29 @@ export class SelectComponent implements ControlValueAccessor {
     });
   }
 
-  selectOption(option: OptionComponent) {
+  selectOption(option: OptionComponent): void {
     if (!option.value()) {
       this.selectedValues.set('');
       this.isOpen.set(false);
       this.closeDropdown();
       return;
     }
+
     if (this.multiple()) {
-      if (this.selectedValues().includes(option.value() as string)) {
+      if ((this.selectedValues() as string[]).includes(option.value() as string)) {
         this.selectedValues.set(
-          (this.selectedValues() as string[]).filter(
-            value => value !== option.value()
-          )
+          (this.selectedValues() as string[]).filter(v => v !== option.value())
         );
         this.selectedDisplayTexts.set(
-          (this.selectedDisplayTexts() as string[]).filter(
-            text => text !== option.el.nativeElement.innerText.trim()
+          this.selectedDisplayTexts().filter(
+            t => t !== option.el.nativeElement.innerText.trim()
           )
         );
         option.isSelected.set(false);
       } else {
-        this.selectedValues.update(value => [
-          ...value,
-          option.value() as string,
-        ]);
-        this.selectedDisplayTexts.update(value => [
-          ...value,
+        this.selectedValues.update(v => [...(v as string[]), option.value() as string]);
+        this.selectedDisplayTexts.update(v => [
+          ...v,
           option.el.nativeElement.innerText.trim(),
         ]);
         option.isSelected.set(true);
@@ -90,23 +89,19 @@ export class SelectComponent implements ControlValueAccessor {
     } else {
       this.selectedValues.set(option.value() as string);
       this.selectedDisplayTexts.set([option.el.nativeElement.innerText.trim()]);
-      this.isOpen.set(false);
-      this.closeDropdown();
       this.options().forEach(opt => opt.isSelected.set(false));
       option.isSelected.set(true);
-    }
-    if (this.onChange) {
-      this.onChange(this.selectedValues());
-    }
-    if (this.onTouched) {
-      this.onTouched();
+      this.isOpen.set(false);
+      this.closeDropdown();
     }
 
+    this.onChange(this.selectedValues());
+    this.onTouched();
     this.selectChange.emit(this.selectedValues());
   }
 
-  toggleDropdown() {
-    this.isOpen.update(res => !res);
+  toggleDropdown(): void {
+    this.isOpen.update(open => !open);
     if (this.isOpen()) {
       this.openDropdown();
     } else {
@@ -115,9 +110,10 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   openDropdown(): void {
-    const view = this.viewContainerRef.createEmbeddedView(
-      this.optionsTemplate()
-    );
+    const template = this.optionsTemplate();
+    if (!template) return;
+
+    const view = this.viewContainerRef.createEmbeddedView(template);
     const hostView = view.rootNodes[0];
 
     this.renderer.appendChild(document.body, hostView);
@@ -125,7 +121,10 @@ export class SelectComponent implements ControlValueAccessor {
     const rect = this.formFieldComponent
       .formFieldElement()
       ?.nativeElement.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (!rect) return;
+
+    const scrollTop = window.scrollY;
     const dropdownHeight = hostView.getBoundingClientRect().height;
     const spaceBelow = window.innerHeight - rect.bottom;
     const spaceAbove = rect.top;
@@ -135,11 +134,7 @@ export class SelectComponent implements ControlValueAccessor {
     this.renderer.setStyle(hostView, 'width', `${rect.width}px`);
 
     if (spaceBelow >= dropdownHeight || spaceBelow >= spaceAbove) {
-      this.renderer.setStyle(
-        hostView,
-        'top',
-        `${rect.bottom + scrollTop + 5}px`
-      );
+      this.renderer.setStyle(hostView, 'top', `${rect.bottom + scrollTop + 5}px`);
     } else {
       this.renderer.setStyle(
         hostView,
@@ -149,11 +144,11 @@ export class SelectComponent implements ControlValueAccessor {
     }
   }
 
-  closeDropdown() {
+  closeDropdown(): void {
     this.viewContainerRef.clear();
   }
 
-  writeValue(value: string): void {
+  writeValue(value: string | string[]): void {
     if (this.multiple()) {
       this.selectedValues.set(Array.isArray(value) ? value : []);
     } else {
@@ -165,25 +160,22 @@ export class SelectComponent implements ControlValueAccessor {
   }
 
   checkSelected(): void {
-    if (this.options()) {
-      this.options().forEach(option => {
-        if (this.selectedValues().includes(option.value() as string)) {
-          option.isSelected.set(true);
-          if (
-            !this.selectedDisplayTexts().includes(
-              option.el.nativeElement.innerText.trim()
-            )
-          ) {
-            this.selectedDisplayTexts.update(value => [
-              ...value,
-              option.el.nativeElement.innerText.trim(),
-            ]);
-          }
-        } else {
-          option.isSelected.set(false);
-        }
-      });
-    }
+    this.options().forEach(option => {
+      const selected = (this.selectedValues() as string[]).includes(
+        option.value() as string
+      );
+      option.isSelected.set(selected);
+
+      if (
+        selected &&
+        !this.selectedDisplayTexts().includes(option.el.nativeElement.innerText.trim())
+      ) {
+        this.selectedDisplayTexts.update(v => [
+          ...v,
+          option.el.nativeElement.innerText.trim(),
+        ]);
+      }
+    });
   }
 
   onOverlayClick(): void {
@@ -192,7 +184,7 @@ export class SelectComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (value: string | string[]) => void): void {
     this.onChange = fn;
   }
 

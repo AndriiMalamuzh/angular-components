@@ -1,9 +1,7 @@
-import { Directive, HostBinding } from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[select-search]',
+  host: { class: 'select-options__search' },
 })
-export class SelectSearchDirective {
-  @HostBinding('class')
-  className = 'select-options__search';
-}
+export class SelectSearchDirective {}

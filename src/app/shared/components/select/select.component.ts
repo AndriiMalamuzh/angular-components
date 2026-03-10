@@ -36,7 +36,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
   host: {
     '(keydown)': 'onKeydown($event)',
-    '(focus)': 'hasFocus.set(true)',
+    '(focus)': '!disabled() && hasFocus.set(true)',
     '(blur)': 'hasFocus.set(false)',
     role: 'combobox',
     '[attr.aria-expanded]': 'isOpen()',
@@ -45,7 +45,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     '[attr.aria-activedescendant]':
       'focusedIndex() >= 0 ? listboxId + "-opt-" + focusedIndex() : null',
     '[attr.aria-multiselectable]': 'multiple()',
-    tabindex: '0',
+    '[attr.tabindex]': 'disabled() ? -1 : 0',
   },
 })
 export class SelectComponent implements ControlValueAccessor {

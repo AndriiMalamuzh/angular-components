@@ -1,3 +1,7 @@
+:host {
+  outline: none;
+}
+
 .select {
   position: relative;
   display: flex;

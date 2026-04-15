@@ -1,4 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ExampleComponent } from 'src/app/shared/components/example/example.component';
 import { TabComponent } from 'src/app/shared/components/tab-group/tab/tab.component';
 import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group.component';
@@ -19,16 +25,17 @@ import { ToastService } from 'src/app/shared/components/toast/toast.service';
   ],
   templateUrl: './toast-example-basic.component.html',
   styleUrl: './toast-example-basic.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastExampleBasicComponent implements OnInit {
-  private http = inject(HttpClient);
-  private toastService = inject(ToastService);
+  private readonly http = inject(HttpClient);
+  private readonly toastService = inject(ToastService);
 
-  fileContents: Record<string, string> = {
+  readonly fileContents = signal<Record<string, string>>({
     exampleHtml: '',
     exampleTs: '',
     exampleScss: '',
-  };
+  });
 
   ngOnInit(): void {
     const fileMappings = {
@@ -46,7 +53,11 @@ export class ToastExampleBasicComponent implements OnInit {
     this.http
       .get(`${environment.publicUrl}files${url}`, { responseType: 'text' })
       .subscribe({
-        next: res => (this.fileContents[key] = res),
+        next: res =>
+          this.fileContents.update(contents => ({
+            ...contents,
+            [key]: res,
+          })),
         error: error => console.error(`Error loading file ${url}`, error),
       });
   }
@@ -54,6 +65,7 @@ export class ToastExampleBasicComponent implements OnInit {
   onSuccess(): void {
     this.toastService.open({
       message: 'Lorem ipsum dolor',
+      position: 'topLeft',
     });
   }
 
@@ -61,6 +73,7 @@ export class ToastExampleBasicComponent implements OnInit {
     this.toastService.open({
       message: 'Lorem ipsum dolor sit',
       type: 'error',
+      position: 'topRight',
     });
   }
 
@@ -68,6 +81,7 @@ export class ToastExampleBasicComponent implements OnInit {
     this.toastService.open({
       message: 'Lorem ipsum dolor sit amet!',
       type: 'warning',
+      position: 'bottomRight',
     });
   }
 
@@ -76,6 +90,7 @@ export class ToastExampleBasicComponent implements OnInit {
       message:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reprehenderit',
       type: 'info',
+      position: 'bottomLeft',
     });
   }
 }

@@ -2,23 +2,33 @@
 <app-example>
   <app-tab-group>
     <app-tab label="toast.component.html">
-      @if (fileContents['exampleHtml']) {
-        <pre><code [highlightAuto]="fileContents['exampleHtml']"></code></pre>
+      @if (fileContents()['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents()['exampleHtml']"></code></pre>
       }
     </app-tab>
     <app-tab label="toast.component.ts">
-      @if (fileContents['exampleTs']) {
-        <pre><code [highlightAuto]="fileContents['exampleTs']"></code></pre>
+      @if (fileContents()['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents()['exampleTs']"></code></pre>
       }
     </app-tab>
     <app-tab label="toast.component.scss">
-      @if (fileContents['exampleScss']) {
-        <pre><code [highlightAuto]="fileContents['exampleScss']"></code></pre>
+      @if (fileContents()['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents()['exampleScss']"></code></pre>
       }
     </app-tab>
-    <app-tab label="toast.service.scss">
-      @if (fileContents['exampleService']) {
-        <pre><code [highlightAuto]="fileContents['exampleService']"></code></pre>
+    <app-tab label="toast.service.ts">
+      @if (fileContents()['exampleService']) {
+        <pre><code [highlightAuto]="fileContents()['exampleService']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="toast.model.ts">
+      @if (fileContents()['exampleModel']) {
+        <pre><code [highlightAuto]="fileContents()['exampleModel']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="toast-container.component.ts">
+      @if (fileContents()['exampleContainer']) {
+        <pre><code [highlightAuto]="fileContents()['exampleContainer']"></code></pre>
       }
     </app-tab>
   </app-tab-group>

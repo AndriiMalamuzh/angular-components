@@ -1,4 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ExampleComponent } from 'src/app/shared/components/example/example.component';
 import { TabComponent } from 'src/app/shared/components/tab-group/tab/tab.component';
 import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group.component';
@@ -11,15 +17,19 @@ import { HighlightAuto } from 'ngx-highlightjs';
   imports: [ExampleComponent, TabComponent, TabGroupComponent, HighlightAuto],
   templateUrl: './toast-example-code.component.html',
   styleUrl: './toast-example-code.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastExampleCodeComponent implements OnInit {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-  fileContents: Record<string, string> = {
+  readonly fileContents = signal<Record<string, string>>({
     exampleHtml: '',
     exampleTs: '',
+    exampleScss: '',
     exampleService: '',
-  };
+    exampleModel: '',
+    exampleContainer: '',
+  });
 
   ngOnInit(): void {
     const fileMappings = {
@@ -27,6 +37,8 @@ export class ToastExampleCodeComponent implements OnInit {
       '/toast/code/example-ts.txt': 'exampleTs',
       '/toast/code/example-scss.txt': 'exampleScss',
       '/toast/code/example-service.txt': 'exampleService',
+      '/toast/code/example-model.txt': 'exampleModel',
+      '/toast/code/example-container.txt': 'exampleContainer',
     };
 
     for (const [url, key] of Object.entries(fileMappings)) {
@@ -38,7 +50,11 @@ export class ToastExampleCodeComponent implements OnInit {
     this.http
       .get(`${environment.publicUrl}files${url}`, { responseType: 'text' })
       .subscribe({
-        next: res => (this.fileContents[key] = res),
+        next: res =>
+          this.fileContents.update(contents => ({
+            ...contents,
+            [key]: res,
+          })),
         error: error => console.error(`Error loading file ${url}`, error),
       });
   }

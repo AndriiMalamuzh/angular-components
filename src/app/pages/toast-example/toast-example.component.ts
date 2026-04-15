@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ToastExampleBasicComponent } from 'src/app/pages/toast-example/toast-example-basic/toast-example-basic.component';
 import { ToastExampleCodeComponent } from 'src/app/pages/toast-example/toast-example-code/toast-example-code.component';
 
@@ -7,5 +7,6 @@ import { ToastExampleCodeComponent } from 'src/app/pages/toast-example/toast-exa
   imports: [ToastExampleBasicComponent, ToastExampleCodeComponent],
   templateUrl: './toast-example.component.html',
   styleUrl: './toast-example.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastExampleComponent {}

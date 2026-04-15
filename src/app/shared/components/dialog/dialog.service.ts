@@ -1,0 +1,145 @@
+import {
+  ApplicationRef,
+  ComponentRef,
+  createComponent,
+  EmbeddedViewRef,
+  EnvironmentInjector,
+  inject,
+  Injectable,
+  Injector,
+  Type,
+} from '@angular/core';
+import { DialogConfig } from './dialog-config';
+import { DialogRef } from './dialog-ref';
+import { DIALOG_DATA } from './dialog.tokens';
+import { DialogContainerComponent } from './components/dialog-container/dialog-container.component';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DialogService {
+  private readonly appRef = inject(ApplicationRef);
+  private readonly environmentInjector = inject(EnvironmentInjector);
+  private readonly injector = inject(Injector);
+
+  private readonly openDialogs: ComponentRef<DialogContainerComponent>[] = [];
+  private escapeListener: (() => void) | null = null;
+
+  open<T, R = unknown>(
+    component: Type<T>,
+    config: DialogConfig = {}
+  ): DialogRef<R> {
+    const dialogRef = new DialogRef<R>();
+
+    const dialogInjector = Injector.create({
+      parent: this.injector,
+      providers: [
+        { provide: DialogRef, useValue: dialogRef },
+        { provide: DIALOG_DATA, useValue: config.data },
+      ],
+    });
+
+    const containerRef = createComponent(DialogContainerComponent, {
+      environmentInjector: this.environmentInjector,
+      elementInjector: dialogInjector,
+    });
+
+    const panelClasses = this.normalizePanelClass(config.panelClass);
+    containerRef.instance.config.set(config);
+    containerRef.instance.zIndex.set(1000000 + this.openDialogs.length);
+    containerRef.instance.panelClasses.set(panelClasses);
+
+    this.appRef.attachView(containerRef.hostView);
+    document.body.appendChild(this.getRootElement(containerRef));
+
+    containerRef.changeDetectorRef.detectChanges();
+    containerRef.instance.init();
+
+    const vcr = containerRef.instance.dialogContent();
+    if (vcr) {
+      requestAnimationFrame(() => {
+        const contentRef = vcr.createComponent(component, {
+          injector: dialogInjector,
+        });
+        const hostEl = contentRef.location.nativeElement as HTMLElement;
+        hostEl.style.display = 'flex';
+        hostEl.style.flexDirection = 'column';
+        hostEl.style.flex = '1';
+        hostEl.style.minHeight = '0';
+        containerRef.changeDetectorRef.detectChanges();
+      });
+    }
+
+    this.openDialogs.push(containerRef);
+    this.updateScrollLock();
+    this.setupEscapeListener();
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.destroyDialog(containerRef);
+    });
+
+    return dialogRef;
+  }
+
+  private destroyDialog(
+    containerRef: ComponentRef<DialogContainerComponent>
+  ): void {
+    const index = this.openDialogs.indexOf(containerRef);
+    if (index === -1) return;
+
+    this.openDialogs.splice(index, 1);
+    this.appRef.detachView(containerRef.hostView);
+    containerRef.destroy();
+    this.updateScrollLock();
+
+    if (this.openDialogs.length === 0) {
+      this.teardownEscapeListener();
+    }
+  }
+
+  private updateScrollLock(): void {
+    document.body.style.overflow = this.openDialogs.length > 0 ? 'hidden' : '';
+  }
+
+  closeTopDialog(): void {
+    const top = this.openDialogs[this.openDialogs.length - 1];
+    if (!top) return;
+
+    const config = top.instance.config();
+    if (!config.disableClose) {
+      // Trigger close via DialogRef so container can animate out
+      const dialogRef = top.injector.get(DialogRef);
+      dialogRef.close();
+    }
+  }
+
+  private setupEscapeListener(): void {
+    if (this.escapeListener) return;
+
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        this.closeTopDialog();
+      }
+    };
+
+    document.addEventListener('keydown', handler);
+    this.escapeListener = () =>
+      document.removeEventListener('keydown', handler);
+  }
+
+  private teardownEscapeListener(): void {
+    this.escapeListener?.();
+    this.escapeListener = null;
+  }
+
+  private normalizePanelClass(panelClass?: string | string[]): string[] {
+    if (!panelClass) return ['dialog'];
+    const classes = Array.isArray(panelClass) ? panelClass : [panelClass];
+    return ['dialog', ...classes];
+  }
+
+  private getRootElement<T>(ref: ComponentRef<T>): HTMLElement {
+    return (ref.hostView as EmbeddedViewRef<unknown>)
+      .rootNodes[0] as HTMLElement;
+  }
+}

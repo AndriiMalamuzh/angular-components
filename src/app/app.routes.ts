@@ -23,6 +23,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'dialog',
+    loadComponent: () =>
+      import('./pages/dialog-example/dialog-example.component').then(
+        c => c.DialogExampleComponent
+      ),
+  },
+  {
     path: 'checkbox',
     loadComponent: () =>
       import('./pages/checkbox-example/checkbox-example.component').then(

@@ -1,0 +1,35 @@
+<h2>Code</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="dialog.service.ts">
+      @if (fileContents()['exampleService']) {
+        <pre><code [highlightAuto]="fileContents()['exampleService']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-ref.ts">
+      @if (fileContents()['exampleRef']) {
+        <pre><code [highlightAuto]="fileContents()['exampleRef']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-config.ts">
+      @if (fileContents()['exampleConfig']) {
+        <pre><code [highlightAuto]="fileContents()['exampleConfig']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-container.html">
+      @if (fileContents()['exampleContainerHtml']) {
+        <pre><code [highlightAuto]="fileContents()['exampleContainerHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-container.ts">
+      @if (fileContents()['exampleContainerTs']) {
+        <pre><code [highlightAuto]="fileContents()['exampleContainerTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-close.directive.ts">
+      @if (fileContents()['exampleClose']) {
+        <pre><code [highlightAuto]="fileContents()['exampleClose']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

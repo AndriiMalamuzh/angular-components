@@ -1,0 +1,74 @@
+:host {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  animation: overlay-enter 200ms ease-out;
+
+  &--leave {
+    animation: overlay-leave 200ms ease-in forwards;
+  }
+}
+
+.dialog {
+  position: relative;
+  width: min(100vw - 30px, var(--dialog-width, 560px));
+  max-height: calc(90dvh - 30px);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg, #fff);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+  animation: panel-enter 200ms ease-out;
+
+  &--leave {
+    animation: panel-leave 200ms ease-in forwards;
+  }
+}
+
+@keyframes overlay-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes panel-leave {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+}

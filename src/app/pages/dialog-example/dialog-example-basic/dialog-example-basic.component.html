@@ -1,0 +1,56 @@
+<h2 style="margin-top: 0">Example</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="Example">
+      <div class="dialog-example">
+        <div class="dialog-example__actions">
+          <button type="button" button view="stroked" (click)="openDialog()">
+            Open dialog
+          </button>
+          <button
+            type="button"
+            button
+            view="stroked"
+            (click)="openWideDialog()">
+            Wide dialog
+          </button>
+          <button
+            type="button"
+            button
+            view="stroked"
+            (click)="openPersistentDialog()">
+            Persistent dialog
+          </button>
+        </div>
+        <p class="dialog-example__result">
+          Last result: <strong>{{ lastResult() }}</strong>
+        </p>
+      </div>
+    </app-tab>
+    <app-tab label="Usage HTML">
+      @if (fileContents()['usageHtml']) {
+        <pre><code [highlightAuto]="fileContents()['usageHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Usage TS">
+      @if (fileContents()['usageTs']) {
+        <pre><code [highlightAuto]="fileContents()['usageTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Dialog HTML">
+      @if (fileContents()['exampleHtml']) {
+        <pre><code [highlightAuto]="fileContents()['exampleHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Dialog TS">
+      @if (fileContents()['exampleTs']) {
+        <pre><code [highlightAuto]="fileContents()['exampleTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Dialog SCSS">
+      @if (fileContents()['exampleScss']) {
+        <pre><code [highlightAuto]="fileContents()['exampleScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

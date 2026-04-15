@@ -1,0 +1,10 @@
+<app-dialog-header>{{ data.title }}</app-dialog-header>
+
+<app-dialog-content>
+  <p>{{ data.message }}</p>
+</app-dialog-content>
+
+<app-dialog-footer>
+  <button type="button" button view="stroked" dialogClose>Cancel</button>
+  <button type="button" button view="flat" (click)="onConfirm()">Confirm</button>
+</app-dialog-footer>

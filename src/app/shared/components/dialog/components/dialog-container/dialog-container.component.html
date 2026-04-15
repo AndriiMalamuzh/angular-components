@@ -1,0 +1,19 @@
+@if (visible()) {
+  <!-- eslint-disable-next-line @angular-eslint/template/interactive-supports-focus, @angular-eslint/template/click-events-have-key-events -->
+  <div
+    class="dialog-overlay"
+    (animate.leave)="onBackdropLeave($event)"
+    (click)="onBackdropClick()"></div>
+}
+
+@if (visible()) {
+  <div
+    class="dialog"
+    [class]="panelClasses()"
+    [style.--dialog-width]="config().width ?? null"
+    (animate.leave)="onPanelLeave($event)"
+    role="dialog"
+    aria-modal="true">
+    <ng-container #dialogContent />
+  </div>
+}

@@ -1,0 +1,14 @@
+.dialog-example {
+  padding: 20px;
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__result {
+    margin: 16px 0 0;
+    color: var(--color-text-secondary, #666);
+  }
+}

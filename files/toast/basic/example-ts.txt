@@ -9,11 +9,12 @@ import { ToastService } from 'src/app/shared/components/toast/toast.service';
   styleUrl: './toast-example-basic.component.scss',
 })
 export class ToastExampleBasicComponent {
-  private toastService = inject(ToastService);
+  private readonly toastService = inject(ToastService);
 
   onSuccess(): void {
     this.toastService.open({
       message: 'Lorem ipsum dolor',
+      position: 'topLeft',
     });
   }
 
@@ -21,6 +22,7 @@ export class ToastExampleBasicComponent {
     this.toastService.open({
       message: 'Lorem ipsum dolor sit',
       type: 'error',
+      position: 'topRight',
     });
   }
 
@@ -28,6 +30,7 @@ export class ToastExampleBasicComponent {
     this.toastService.open({
       message: 'Lorem ipsum dolor sit amet!',
       type: 'warning',
+      position: 'bottomRight',
     });
   }
 
@@ -35,6 +38,7 @@ export class ToastExampleBasicComponent {
     this.toastService.open({
       message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reprehenderit',
       type: 'info',
+      position: 'bottomLeft',
     });
   }
 }

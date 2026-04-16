@@ -1,0 +1,20 @@
+<app-dialog-header>{{ data.title }}</app-dialog-header>
+
+<app-dialog-content>
+  <p>{{ data.message }}</p>
+  <p class="nested-dialog__hint">
+    Click the button below to open another dialog on top of this one.
+  </p>
+  <button
+    type="button"
+    button
+    view="stroked"
+    color="primary"
+    (click)="openInnerDialog()">
+    Open inner dialog
+  </button>
+</app-dialog-content>
+
+<app-dialog-footer>
+  <button type="button" button view="stroked" dialogClose>Close</button>
+</app-dialog-footer>

@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  flex-shrink: 0;
+  padding: 20px 24px 0;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__title {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    min-width: 0;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+}

@@ -32,6 +32,7 @@ export const MENU: MenuInterface[] = [
   {
     title: 'Dialog',
     link: '/dialog',
+    img: 'dialog.svg',
   },
   // {
   //   title: 'Drag and Drop',

@@ -14,6 +14,7 @@ import { TabGroupComponent } from 'src/app/shared/components/tab-group/tab-group
 import { ButtonDirective } from 'src/app/shared/directives/button.directive';
 import { DialogService } from 'src/app/shared/components/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { NestedDialogComponent } from './nested-dialog/nested-dialog.component';
 
 @Component({
   selector: 'app-dialog-example-basic',
@@ -40,6 +41,9 @@ export class DialogExampleBasicComponent implements OnInit {
     exampleScss: '',
     usageHtml: '',
     usageTs: '',
+    nestedHtml: '',
+    nestedTs: '',
+    nestedScss: '',
   });
 
   ngOnInit(): void {
@@ -49,6 +53,9 @@ export class DialogExampleBasicComponent implements OnInit {
       '/dialog/basic/example-scss.txt': 'exampleScss',
       '/dialog/basic/usage-html.txt': 'usageHtml',
       '/dialog/basic/usage-ts.txt': 'usageTs',
+      '/dialog/basic/nested-html.txt': 'nestedHtml',
+      '/dialog/basic/nested-ts.txt': 'nestedTs',
+      '/dialog/basic/nested-scss.txt': 'nestedScss',
     };
 
     for (const [url, key] of Object.entries(fileMappings)) {
@@ -101,6 +108,24 @@ export class DialogExampleBasicComponent implements OnInit {
 
     ref.afterClosed().subscribe(result => {
       this.lastResult.set(result ? 'Confirmed' : 'Cancelled');
+    });
+  }
+
+  openNestedDialog(): void {
+    const ref = this.dialog.open<NestedDialogComponent, string>(
+      NestedDialogComponent,
+      {
+        data: {
+          title: 'Outer dialog',
+          message:
+            'This is the outer dialog. You can open another dialog from here.',
+        },
+        width: '520px',
+      }
+    );
+
+    ref.afterClosed().subscribe(result => {
+      this.lastResult.set(result === 'inner-confirmed' ? 'Inner confirmed' : 'Closed');
     });
   }
 

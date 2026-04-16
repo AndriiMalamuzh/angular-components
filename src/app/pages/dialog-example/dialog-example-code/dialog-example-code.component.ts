@@ -29,6 +29,13 @@ export class DialogExampleCodeComponent implements OnInit {
     exampleContainerHtml: '',
     exampleContainerTs: '',
     exampleClose: '',
+    headerHtml: '',
+    headerTs: '',
+    headerScss: '',
+    contentTs: '',
+    contentScss: '',
+    footerTs: '',
+    footerScss: '',
   });
 
   ngOnInit(): void {
@@ -39,6 +46,13 @@ export class DialogExampleCodeComponent implements OnInit {
       '/dialog/code/dialog-container-html.txt': 'exampleContainerHtml',
       '/dialog/code/dialog-container-ts.txt': 'exampleContainerTs',
       '/dialog/code/dialog-close.txt': 'exampleClose',
+      '/dialog/code/dialog-header-html.txt': 'headerHtml',
+      '/dialog/code/dialog-header-ts.txt': 'headerTs',
+      '/dialog/code/dialog-header-scss.txt': 'headerScss',
+      '/dialog/code/dialog-content-ts.txt': 'contentTs',
+      '/dialog/code/dialog-content-scss.txt': 'contentScss',
+      '/dialog/code/dialog-footer-ts.txt': 'footerTs',
+      '/dialog/code/dialog-footer-scss.txt': 'footerScss',
     };
 
     for (const [url, key] of Object.entries(fileMappings)) {

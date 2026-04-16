@@ -21,6 +21,13 @@
             (click)="openPersistentDialog()">
             Persistent dialog
           </button>
+          <button
+            type="button"
+            button
+            view="stroked"
+            (click)="openNestedDialog()">
+            Nested dialog
+          </button>
         </div>
         <p class="dialog-example__result">
           Last result: <strong>{{ lastResult() }}</strong>
@@ -50,6 +57,21 @@
     <app-tab label="Dialog SCSS">
       @if (fileContents()['exampleScss']) {
         <pre><code [highlightAuto]="fileContents()['exampleScss']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Nested HTML">
+      @if (fileContents()['nestedHtml']) {
+        <pre><code [highlightAuto]="fileContents()['nestedHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Nested TS">
+      @if (fileContents()['nestedTs']) {
+        <pre><code [highlightAuto]="fileContents()['nestedTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="Nested SCSS">
+      @if (fileContents()['nestedScss']) {
+        <pre><code [highlightAuto]="fileContents()['nestedScss']"></code></pre>
       }
     </app-tab>
   </app-tab-group>

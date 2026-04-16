@@ -33,3 +33,56 @@
     </app-tab>
   </app-tab-group>
 </app-example>
+
+<h2>Header</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="dialog-header.html">
+      @if (fileContents()['headerHtml']) {
+        <pre><code [highlightAuto]="fileContents()['headerHtml']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-header.ts">
+      @if (fileContents()['headerTs']) {
+        <pre><code [highlightAuto]="fileContents()['headerTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-header.scss">
+      @if (fileContents()['headerScss']) {
+        <pre><code [highlightAuto]="fileContents()['headerScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Content</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="dialog-content.ts">
+      @if (fileContents()['contentTs']) {
+        <pre><code [highlightAuto]="fileContents()['contentTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-content.scss">
+      @if (fileContents()['contentScss']) {
+        <pre><code [highlightAuto]="fileContents()['contentScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>
+
+<h2>Footer</h2>
+<app-example>
+  <app-tab-group>
+    <app-tab label="dialog-footer.ts">
+      @if (fileContents()['footerTs']) {
+        <pre><code [highlightAuto]="fileContents()['footerTs']"></code></pre>
+      }
+    </app-tab>
+    <app-tab label="dialog-footer.scss">
+      @if (fileContents()['footerScss']) {
+        <pre><code [highlightAuto]="fileContents()['footerScss']"></code></pre>
+      }
+    </app-tab>
+  </app-tab-group>
+</app-example>

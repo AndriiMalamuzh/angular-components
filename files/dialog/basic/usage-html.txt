@@ -1,0 +1,8 @@
+<div class="dialog-example">
+  <div class="dialog-example__actions">
+    <button type="button" button view="stroked" (click)="openDialog()">Open dialog</button>
+    <button type="button" button view="stroked" (click)="openWideDialog()">Wide dialog</button>
+    <button type="button" button view="stroked" (click)="openPersistentDialog()">Persistent dialog</button>
+  </div>
+  <p class="dialog-example__result">Last result: <strong>{{ lastResult() }}</strong></p>
+</div>

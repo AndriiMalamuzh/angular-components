@@ -1,0 +1,52 @@
+import { Component, inject, signal } from '@angular/core';
+import { DialogService } from 'src/app/shared/components/dialog';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+
+@Component({
+  selector: 'app-dialog-example-basic',
+  templateUrl: './dialog-example-basic.component.html',
+  styleUrl: './dialog-example-basic.component.scss',
+})
+export class DialogExampleBasicComponent {
+  private readonly dialog = inject(DialogService);
+
+  readonly lastResult = signal<string>('—');
+
+  openDialog(): void {
+    const ref = this.dialog.open<ConfirmDialogComponent, boolean>(
+      ConfirmDialogComponent,
+      {
+        data: {
+          title: 'Confirm action',
+          message: 'Are you sure you want to proceed with this action?',
+        },
+        width: '480px',
+      },
+    );
+
+    ref.afterClosed().subscribe(result => {
+      this.lastResult.set(result ? 'Confirmed' : 'Cancelled');
+    });
+  }
+
+  openWideDialog(): void {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Wide dialog',
+        message: 'This dialog has a custom width and a custom panel class applied.',
+      },
+      width: '720px',
+      panelClass: 'wide-dialog',
+    });
+  }
+
+  openPersistentDialog(): void {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Persistent dialog',
+        message: 'This dialog cannot be closed by clicking the backdrop or pressing Escape.',
+      },
+      disableClose: true,
+    });
+  }
+}
